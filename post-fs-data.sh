@@ -5,7 +5,7 @@ MODDIR=${0%/*}
 
 # This script will be executed in post-fs-data mode
 # More info in the main Magisk thread
-
+mount --bind $MODDIR/optics /optics
 mkdir -p $MODDIR/system/vendor/etc
 cp -af /vendor/etc/floating_feature.xml $MODDIR/system/vendor/etc
 
