@@ -1,6 +1,6 @@
 id=oneuifeatures
 name=OneUI_CSC_Features
-version=0.5
-versionCode=5
+version=v0.6
+versionCode=6
 author=Mzdyl
-description=No
+description=为港版 OneUI 添加更多国行优秀特性
