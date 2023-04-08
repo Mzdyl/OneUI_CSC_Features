@@ -2,9 +2,5 @@
 SKIPUNZIP=0
 
 REPLACE="
-system\system\app\MinusOnePage
-/system/priv-app/SystemUI
-/system/priv-app/Settings
-/system/framework
-/optics
+/system/app/MinusOnePage
 "
