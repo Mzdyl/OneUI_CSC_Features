@@ -3,4 +3,9 @@ SKIPUNZIP=0
 
 REPLACE="
 /system/app/MinusOnePage
+/system/app/AllShareAware
+/system/app/DAAgent
+/system/app/MdxKitService
+/system/priv-app/Firewall
+/system/priv-app/ShareLive
 "
