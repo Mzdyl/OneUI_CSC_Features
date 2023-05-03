@@ -33,28 +33,24 @@ POSTFSDATA=true
 LATESTARTSERVICE=true
 SKIPUNZIP=0
 
-id="`grep_prop id $TMPDIR/module.prop`"
-var_device="`getprop ro.product.device`"
-var_version="`grep_prop ro.build.version.release`"
-B="`grep_prop author $TMPDIR/module.prop`"
-C="`grep_prop name $TMPDIR/module.prop`"
+
 D="`grep_prop description $TMPDIR/module.prop`"
+CSC="getprop ro.boot.sales_code"
 
 #开始安装
 sleep 0.07
 echo -en "\nOneUI CSC Features\nby Mzdyl\n\n"
-#ui_print "- *******************************"
-#ui_print "- 您的设备: $var_device"
-#ui_print "- 系统版本: $var_version"
-#ui_print "- $C    "
-ui_print "- 作者：$B"
 ui_print "- $D    "
-#ui_print "- *******************************"
+
+ui_print "- 你的设备地区是 $CSC\n尝试自动适配"
+mv $MODPATH/optics/configs/carriers/TGY $MODPATH/optics/configs/carriers/$CSC
+
 ui_print "—————————————————————————————————————"
 ui_print "- 按音量键＋: 安装全功能版（有BUG）"
 ui_print "- 按音量键－: 安装精简功能版（无BUG，应该）"
 ui_print "—————————————————————————————————————"
 sleep 0.07
+
 
 
 if [[ $(Volume_key_monitoring) == 0 ]]; then
@@ -84,6 +80,11 @@ else
 	rm -rf "$MODPATH/system/app/DAAgent"
 	rm -rf "$MODPATH/system/app/MdxKitService"
 fi
+
+ui_print "添加 切换至使用更好的 WLAN 网络"
+settings put global sem_wifi_switch_to_better_wifi_supported 1
+ui_print "添加 关闭 ADB 安装验证"
+settings put global verifier_verify_adb_installs 0
 
 set_perm_recursive  $MODPATH  0  0  0777  0777
 

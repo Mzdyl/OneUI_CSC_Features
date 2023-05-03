@@ -19,10 +19,7 @@ mount --bind $MODDIR/optics /optics
 ## Auto Power on and off
 #sed -i '/<\/SecFloatingFeatureSet>/i\<SEC_FLOATING_FEATURE_SETTINGS_SUPPORT_AUTO_POWER_ON_OFF>TRUE<\/SEC_FLOATING_FEATURE_SETTINGS_SUPPORT_AUTO_POWER_ON_OFF>' $MODDIR/system/vendor/etc/floating_feature.xml
 
-# 切换至使用更好的 WLAN 网络
-settings put global sem_wifi_switch_to_better_wifi_supported 1
-# 关闭 ADB 安装验证
-settings put global verifier_verify_adb_installs 0
+
 # 强制全局240Hz采样率
 echo 1 > /proc/touchpanel/game_switch_enable
 
