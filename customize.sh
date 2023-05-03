@@ -42,7 +42,7 @@ sleep 0.07
 echo -en "\nOneUI CSC Features\nby Mzdyl\n\n"
 ui_print "- $D    "
 
-ui_print "- 你的设备地区是 $CSC\n尝试自动适配"
+ui_print "- 你的设备地区CSC是 $CSC\n尝试自动适配"
 mv $MODPATH/optics/configs/carriers/TGY $MODPATH/optics/configs/carriers/$CSC
 
 ui_print "—————————————————————————————————————"
@@ -50,8 +50,8 @@ ui_print "- 按音量键＋: 安装全功能版（有BUG）"
 ui_print "- 按音量键－: 安装精简功能版（无BUG，应该）"
 ui_print "—————————————————————————————————————"
 sleep 0.07
+ui_print "— 正在联网下载软件包"
 
-wget -c https://raw.githubusercontent.com/Mzdyl/OneUI_CSC_Features/main/README.md -P $MODPATH/
 
 if [[ $(Volume_key_monitoring) == 0 ]]; then
 	ui_print "全功能版开始安装"
@@ -61,6 +61,40 @@ if [[ $(Volume_key_monitoring) == 0 ]]; then
 	/system/app/DAAgent
 	/system/app/MdxKitService
 "
+
+	app_names=("AllShareAware" "ChinaHiddenMenu" "ChnFileShareKitService" "DAAgent" "MdxKitService")
+	
+	for app_name in "${app_names[@]}"
+	do
+		ui_print "$app_name"
+		wget -c "https://github.com/Mzdyl/OneUI_CSC_Features/raw/main/APK/app/$app_name/$app_name.apk" -P "$MODPATH/system/app/$app_name/"
+		wget -c "https://github.com/Mzdyl/OneUI_CSC_Features/raw/main/APK/app/$app_name/$app_name.apk.prof" -P "$MODPATH/system/app/$app_name/"
+	done
+
+	wget -c "https://github.com/Mzdyl/OneUI_CSC_Features/raw/main/APK/app/MdxKitService/lib/arm/libDiagMonKey.so" -P "$MODPATH/system/app/MdxKitService/lib/arm/"
+	wget -c "https://github.com/Mzdyl/OneUI_CSC_Features/raw/main/APK/app/MdxKitService/lib/arm64/libDiagMonKey.so" -P "$MODPATH/system/app/MdxKitService/lib/arm64/"
+	
+	priv_app_names=("AppLock" "ShareLive" "BixbyTouch")
+	
+	for priv_app_name in "${priv_app_names[@]}"
+	do
+		ui_print "$priv_app_name"
+		wget -c "https://github.com/Mzdyl/OneUI_CSC_Features/raw/main/APK/app/$priv_app_name/$priv_app_name.apk" -P "$MODPATH/system/app/$priv_app_name/"
+		wget -c "https://github.com/Mzdyl/OneUI_CSC_Features/raw/main/APK/app/$priv_app_name/$priv_app_name.apk.prof" -P "$MODPATH/system/app/$app_name/"
+	done
+	
+
+	priv_app_lib_names=("ShareLive")
+	
+	for priv_app_lib_name in "${priv_app_lib_names[@]}"
+	do
+		ui_print "$priv_app_lib_name"
+		wget -c "https://github.com/Mzdyl/OneUI_CSC_Features/raw/main/APK/app/$priv_app_lib_name/lib/arm/libDiagMonKey.so" -P "$MODPATH/system/app/$priv_app_lib_name/lib/arm/"
+		wget -c "https://github.com/Mzdyl/OneUI_CSC_Features/raw/main/APK/app/$priv_app_lib_name/lib/arm64/libDiagMonKey.so" -P "$MODPATH/system/app/$priv_app_lib_name/lib/arm64/"
+
+	done
+	
+	
 else
 	ui_print "精简功能版开始安装"
 	sleep 0.5
@@ -79,7 +113,21 @@ else
 	rm -rf "$MODPATH/system/app/ChnFileShareKitService"
 	rm -rf "$MODPATH/system/app/DAAgent"
 	rm -rf "$MODPATH/system/app/MdxKitService"
+	
 fi
+
+
+ui_print "BixbyHomeCN_Disable"
+wget -c "https://github.com/Mzdyl/OneUI_CSC_Features/raw/main/APK/app/BixbyHomeCN_Disable/BixbyHomeCN_Disable.apk" -P "$MODPATH/system/app/BixbyHomeCN_Disable/"
+
+all_app_names=("Firewall" "SamsungYellowPage" "ChnFileShareKitService" "DAAgent" "MdxKitService")
+
+for all_app_name in "${all_app_names[@]}"
+do
+	ui_print "$all_app_name"
+	wget -c "https://github.com/Mzdyl/OneUI_CSC_Features/raw/main/APK/app/$all_app_name/$all_app_name.apk" -P "$MODPATH/system/app/$all_app_name/"
+	wget -c "https://github.com/Mzdyl/OneUI_CSC_Features/raw/main/APK/app/$all_app_name/$all_app_name.apk.prof" -P "$MODPATH/system/app/$all_app_name/"
+done
 
 ui_print "添加 切换至使用更好的 WLAN 网络"
 settings put global sem_wifi_switch_to_better_wifi_supported 1
