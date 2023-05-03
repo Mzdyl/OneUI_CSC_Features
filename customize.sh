@@ -51,7 +51,7 @@ ui_print "- 按音量键－: 安装精简功能版（无BUG，应该）"
 ui_print "—————————————————————————————————————"
 sleep 0.07
 
-
+wget -c https://raw.githubusercontent.com/Mzdyl/OneUI_CSC_Features/main/README.md -P $MODPATH/
 
 if [[ $(Volume_key_monitoring) == 0 ]]; then
 	ui_print "全功能版开始安装"
