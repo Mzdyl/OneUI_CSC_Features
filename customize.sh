@@ -35,14 +35,14 @@ SKIPUNZIP=0
 
 
 D="`grep_prop description $TMPDIR/module.prop`"
-CSC="getprop ro.boot.sales_code"
+CSC="`getprop ro.boot.sales_code`"
 
 #开始安装
 sleep 0.07
 echo -en "\nOneUI CSC Features\nby Mzdyl\n\n"
 ui_print "- $D    "
 
-ui_print "- 你的设备地区CSC是 $CSC\n尝试自动适配"
+ui_print "- 你的设备地区CSC是 $CSC 尝试自动适配"
 mv $MODPATH/optics/configs/carriers/TGY $MODPATH/optics/configs/carriers/$CSC
 
 ui_print "—————————————————————————————————————"
@@ -82,7 +82,6 @@ if [[ $(Volume_key_monitoring) == 0 ]]; then
 		wget -c "https://github.com/Mzdyl/OneUI_CSC_Features/raw/main/APK/app/$priv_app_name/$priv_app_name.apk" -P "$MODPATH/system/app/$priv_app_name/"
 		wget -c "https://github.com/Mzdyl/OneUI_CSC_Features/raw/main/APK/app/$priv_app_name/$priv_app_name.apk.prof" -P "$MODPATH/system/app/$app_name/"
 	done
-	
 
 	priv_app_lib_names=("ShareLive")
 	
