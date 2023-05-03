@@ -40,26 +40,25 @@ B="`grep_prop author $TMPDIR/module.prop`"
 C="`grep_prop name $TMPDIR/module.prop`"
 D="`grep_prop description $TMPDIR/module.prop`"
 
-
-
 #开始安装
 sleep 0.07
 echo -en "\nOneUI CSC Features\nby Mzdyl\n\n"
-ui_print "- *******************************"
-ui_print "- 您的设备: $var_device"
-ui_print "- 系统版本: $var_version"
-ui_print "- $C    "
+#ui_print "- *******************************"
+#ui_print "- 您的设备: $var_device"
+#ui_print "- 系统版本: $var_version"
+#ui_print "- $C    "
 ui_print "- 作者：$B"
 ui_print "- $D    "
-ui_print "- *******************************"
+#ui_print "- *******************************"
+ui_print "—————————————————————————————————————"
+ui_print "- 按音量键＋: 安装全功能版（有BUG）"
+ui_print "- 按音量键－: 安装精简功能版（无BUG，应该）"
+ui_print "—————————————————————————————————————"
 sleep 0.07
-Outputs "—————————————————————————————————————"
-Outputs "- 按音量键＋: 安装全功能版（有BUG）"
-Outputs "- 按音量键－: 安装精简功能版（无BUG，应该）"
-Outputs "—————————————————————————————————————"
+
 
 if [[ $(Volume_key_monitoring) == 0 ]]; then
-	Outputs "全功能版开始安装"
+	ui_print "全功能版开始安装"
 	REPLACE="
 	/system/priv-app/ShareLive
 	/system/app/AllShareAware
@@ -67,7 +66,7 @@ if [[ $(Volume_key_monitoring) == 0 ]]; then
 	/system/app/MdxKitService
 "
 else
-	Outputs "精简功能版开始安装"
+	ui_print "精简功能版开始安装"
 	sleep 0.5
 	rm -rf "$MODPATH/system/priv-app/AppLock"
 	rm -rf "$MODPATH/system/priv-app/BixbyTouch"
