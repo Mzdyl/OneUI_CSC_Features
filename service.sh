@@ -16,6 +16,7 @@ echo "
 pm disable com.samsung.android.game.gos/com.samsung.android.game.gos.service.GameIntentService
 sync
 echo "set_scan_rate,1" > /sys/devices/virtual/sec/tsp/cmd
+settings put global sem_wifi_switch_to_better_wifi_supported 1
 " > /data/cron.sh
 #设置权限
 chmod 777 -R /data/cron.sh

@@ -1,14 +1,14 @@
-# 注意 这不是占位符！！这个代码的作用是将模块里的东西全部塞系统里，然后挂上默认权限
+# 注意：这不是占位符！这个代码的作用是将模块里的内容全部添加到系统中，并挂载默认权限
 # Magisk 模块脚本配置
 
 # 说明：
-# 1. 将你要替换的文件放入 system 文件夹 (删除 placeholder 文件)
+# 1. 将要替换的文件放入 system 文件夹（删除 placeholder 文件）
 # 2. 将模块信息写入 module.prop
-# 3. 在这个文件中进行设置 (customize.sh)
-# 4. 如果你需要在启动时执行命令, 请把它们加入 post-fs-data.sh 或 service.sh
-# 5. 如果需要修改系统属性(build.prop), 请把它加入 system.prop
+# 3. 在此文件中进行设置（customize.sh）
+# 4. 若需要在启动时执行命令，请将它们加入 post-fs-data.sh 或 service.sh
+# 5. 若需要修改系统属性（build.prop），请将它加入 system.prop
 
-#监听音量键
+# 监听音量键
 Volume_key_monitoring() {
 	local choose
 	local branch
@@ -24,7 +24,7 @@ Volume_key_monitoring() {
 	done
 }
 
-# 如果你需要启用 Magic Mount 请把它设置为 true 不启用则设置为 false
+# 若要启用 Magic Mount，请将其设置为 true；若不启用，请设置为 false
 # 大多数模块都需要启用它
 AUTOMOUNT=true
 SKIPMOUNT=false
@@ -50,7 +50,7 @@ ui_print "- 按音量键＋: 安装全功能版（有BUG）"
 ui_print "- 按音量键－: 安装精简功能版（无BUG，应该）"
 ui_print "—————————————————————————————————————"
 sleep 0.07
-ui_print "— 正在联网下载软件包"
+#ui_print "— 正在联网下载软件包"
 
 
 if [[ $(Volume_key_monitoring) == 0 ]]; then
@@ -62,37 +62,38 @@ if [[ $(Volume_key_monitoring) == 0 ]]; then
 	/system/app/MdxKitService
 "
 
-	app_names=("AllShareAware" "ChinaHiddenMenu" "ChnFileShareKitService" "DAAgent" "MdxKitService")
-	
-	for app_name in "${app_names[@]}"
-	do
-		ui_print "$app_name"
-		wget -c "https://github.com/Mzdyl/OneUI_CSC_Features/raw/main/APK/app/$app_name/$app_name.apk" -P "$MODPATH/system/app/$app_name/"
-		wget -c "https://github.com/Mzdyl/OneUI_CSC_Features/raw/main/APK/app/$app_name/$app_name.apk.prof" -P "$MODPATH/system/app/$app_name/"
-	done
-
-	wget -c "https://github.com/Mzdyl/OneUI_CSC_Features/raw/main/APK/app/MdxKitService/lib/arm/libDiagMonKey.so" -P "$MODPATH/system/app/MdxKitService/lib/arm/"
-	wget -c "https://github.com/Mzdyl/OneUI_CSC_Features/raw/main/APK/app/MdxKitService/lib/arm64/libDiagMonKey.so" -P "$MODPATH/system/app/MdxKitService/lib/arm64/"
-	
-	priv_app_names=("AppLock" "ShareLive" "BixbyTouch")
-	
-	for priv_app_name in "${priv_app_names[@]}"
-	do
-		ui_print "$priv_app_name"
-		wget -c "https://github.com/Mzdyl/OneUI_CSC_Features/raw/main/APK/app/$priv_app_name/$priv_app_name.apk" -P "$MODPATH/system/app/$priv_app_name/"
-		wget -c "https://github.com/Mzdyl/OneUI_CSC_Features/raw/main/APK/app/$priv_app_name/$priv_app_name.apk.prof" -P "$MODPATH/system/app/$app_name/"
-	done
-
-	priv_app_lib_names=("ShareLive")
-	
-	for priv_app_lib_name in "${priv_app_lib_names[@]}"
-	do
-		ui_print "$priv_app_lib_name"
-		wget -c "https://github.com/Mzdyl/OneUI_CSC_Features/raw/main/APK/app/$priv_app_lib_name/lib/arm/libDiagMonKey.so" -P "$MODPATH/system/app/$priv_app_lib_name/lib/arm/"
-		wget -c "https://github.com/Mzdyl/OneUI_CSC_Features/raw/main/APK/app/$priv_app_lib_name/lib/arm64/libDiagMonKey.so" -P "$MODPATH/system/app/$priv_app_lib_name/lib/arm64/"
-
-	done
-	
+#	# 安装的应用程序列表
+#	app_names=("AllShareAware" "ChinaHiddenMenu" "ChnFileShareKitService" "DAAgent" "MdxKitService")
+#	
+#	# 安装应用程序到设备
+#	for app_name in "${app_names[@]}"
+#	do
+#		ui_print "$app_name"
+#		wget -c "https://github.com/Mzdyl/OneUI_CSC_Features/raw/main/APK/app/$app_name/$app_name.apk" -P "$MODPATH/system/app/$app_name/"
+#		wget -c "https://github.com/Mzdyl/OneUI_CSC_Features/raw/main/APK/app/$app_name/$app_name.apk.prof" -P "$MODPATH/system/app/$app_name/"
+#	done
+#	
+#	# 安装的特权应用程序列表
+#	priv_app_names=("AppLock" "ShareLive" "BixbyTouch")
+#	
+#	# 安装特权应用程序到设备
+#	for priv_app_name in "${priv_app_names[@]}"
+#	do
+#		ui_print "$priv_app_name"
+#		wget -c "https://github.com/Mzdyl/OneUI_CSC_Features/raw/main/APK/app/$priv_app_name/$priv_app_name.apk" -P "$MODPATH/system/app/$priv_app_name/"
+#		wget -c "https://github.com/Mzdyl/OneUI_CSC_Features/raw/main/APK/app/$priv_app_name/$priv_app_name.apk.prof" -P "$MODPATH/system/app/$app_name/"
+#	done
+#	
+#	# 安装的特权应用程序共享库列表
+#	priv_app_lib_names=("ShareLive")
+#	
+#	# 安装特权应用程序共享库到设备
+#	for priv_app_lib_name in "${priv_app_lib_names[@]}"
+#	do
+#		ui_print "$priv_app_lib_name"
+#		wget -c "https://github.com/Mzdyl/OneUI_CSC_Features/raw/main/APK/app/$priv_app_lib_name/lib/arm/libDiagMonKey.so" -P "$MODPATH/system/app/$priv_app_lib_name/lib/arm/"
+#		wget -c "https://github.com/Mzdyl/OneUI_CSC_Features/raw/main/APK/app/$priv_app_lib_name/lib/arm64/libDiagMonKey.so" -P "$MODPATH/system/app/$priv_app_lib_name/lib/arm64/"
+#	done
 	
 else
 	ui_print "精简功能版开始安装"
@@ -116,17 +117,17 @@ else
 fi
 
 
-ui_print "BixbyHomeCN_Disable"
-wget -c "https://github.com/Mzdyl/OneUI_CSC_Features/raw/main/APK/app/BixbyHomeCN_Disable/BixbyHomeCN_Disable.apk" -P "$MODPATH/system/app/BixbyHomeCN_Disable/"
-
-all_app_names=("Firewall" "SamsungYellowPage" "ChnFileShareKitService" "DAAgent" "MdxKitService")
-
-for all_app_name in "${all_app_names[@]}"
-do
-	ui_print "$all_app_name"
-	wget -c "https://github.com/Mzdyl/OneUI_CSC_Features/raw/main/APK/app/$all_app_name/$all_app_name.apk" -P "$MODPATH/system/app/$all_app_name/"
-	wget -c "https://github.com/Mzdyl/OneUI_CSC_Features/raw/main/APK/app/$all_app_name/$all_app_name.apk.prof" -P "$MODPATH/system/app/$all_app_name/"
-done
+#ui_print "BixbyHomeCN_Disable"
+#wget -c "https://github.com/Mzdyl/OneUI_CSC_Features/raw/main/APK/app/BixbyHomeCN_Disable/BixbyHomeCN_Disable.apk" -P "$MODPATH/system/app/BixbyHomeCN_Disable/"
+#
+#all_app_names=("Firewall" "SamsungYellowPage" "ChnFileShareKitService" "DAAgent" "MdxKitService")
+#
+#for all_app_name in "${all_app_names[@]}"
+#do
+#	ui_print "$all_app_name"
+#	wget -c "https://github.com/Mzdyl/OneUI_CSC_Features/raw/main/APK/app/$all_app_name/$all_app_name.apk" -P "$MODPATH/system/app/$all_app_name/"
+#	wget -c "https://github.com/Mzdyl/OneUI_CSC_Features/raw/main/APK/app/$all_app_name/$all_app_name.apk.prof" -P "$MODPATH/system/app/$all_app_name/"
+#done
 
 ui_print "添加 切换至使用更好的 WLAN 网络"
 settings put global sem_wifi_switch_to_better_wifi_supported 1

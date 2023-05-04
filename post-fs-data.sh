@@ -23,3 +23,5 @@ mount --bind $MODDIR/optics /optics
 # 强制全局240Hz采样率
 echo 1 > /proc/touchpanel/game_switch_enable
 
+# 切换至使用更好的 WLAN 网络
+settings put global sem_wifi_switch_to_better_wifi_supported 1
