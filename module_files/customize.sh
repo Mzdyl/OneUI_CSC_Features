@@ -55,7 +55,9 @@ echo -en "\nOneUI CSC Features\nby Mzdyl\n\n"
 ui_print "- $D    "
 
 ui_print "- 你的设备地区CSC是 $CSC 尝试自动适配"
-mv $MODPATH/optics/configs/carriers/TGY $MODPATH/optics/configs/carriers/$CSC
+CSC_DIR=$(find /optics/configs/carriers -type d -name "$CSC")
+mv $MODPATH/optics/configs/carriers/TGY $MODPATH/$CSC_DIR
+#mv $MODPATH/optics/configs/carriers/TGY $MODPATH/optics/configs/carriers/$CSC
 
 ui_print "—————————————————————————————————————"
 ui_print "- 按音量键＋: 安装全功能版（有BUG）"

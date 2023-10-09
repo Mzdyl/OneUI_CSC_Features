@@ -11,6 +11,8 @@ MODDIR=${0%/*}
 # 更多信息请访问 Magisk 主题
 # More info in the main Magisk thread
 mount --bind $MODDIR/optics /optics
+mount --bind $MODDIR/prism /prism
+
 #mkdir -p $MODDIR/system/vendor/etc
 #cp -af /vendor/etc/floating_feature.xml $MODDIR/system/vendor/etc
 #

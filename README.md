@@ -1,6 +1,6 @@
 # OneUI_CSC_Features
 
-## 为港版 OneUI 添加更多国行特性
+##  OneUI 添加更多特性
 
 #### ~~Make OneUI Greak Again~~
 
@@ -46,3 +46,8 @@
 
 添加 黄页
 
+感谢列表:
+
+[Samsung_Additional_Features](https://github.com/el0xren/Samsung_Additional_Features)
+
+[SamsungKOO2CHC](https://github.com/y6yuan/SamsungKOO2CHC)
