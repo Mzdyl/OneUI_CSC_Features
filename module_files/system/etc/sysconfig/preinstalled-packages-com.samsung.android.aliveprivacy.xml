@@ -1,0 +1,6 @@
+<config>
+     <install-in-user-type package="com.samsung.android.aliveprivacy">
+        <install-in user-type="FULL" />
+        <do-not-install-in user-type="android.os.usertype.full.GUEST" />
+    </install-in-user-type>
+</config>

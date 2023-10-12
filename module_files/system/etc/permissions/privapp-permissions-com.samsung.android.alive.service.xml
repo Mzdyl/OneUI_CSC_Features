@@ -1,0 +1,8 @@
+<permissions>
+    <privapp-permissions package="com.samsung.android.alive.service">
+	<permission name="android.permission.INTERACT_ACROSS_USERS"/>
+	<permission name="android.permission.MANAGE_USERS"/>
+	<permission name="android.permission.READ_EXTERNAL_STORAGE" />
+	<permission name="android.permission.INSTALL_SELF_UPDATES"/>
+    </privapp-permissions>
+</permissions>

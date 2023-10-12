@@ -1,0 +1,10 @@
+<permissions>
+    <privapp-permissions package="com.samsung.android.homemode">
+        <permission name="android.permission.WRITE_SECURE_SETTINGS"/>
+        <permission name="android.permission.INTERACT_ACROSS_USERS"/>
+        <permission name="android.permission.MANAGE_USERS"/>
+        <permission name="android.permission.PROVIDE_TRUST_AGENT"/>
+        <permission name="com.sec.android.diagmonagent.permission.DIAGMON"/>
+        <permission name="com.sec.android.diagmonagent.permission.PROVIDER"/>
+    </privapp-permissions>
+</permissions>

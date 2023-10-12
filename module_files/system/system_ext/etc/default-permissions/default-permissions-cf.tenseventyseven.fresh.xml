@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The Fresh Project
+     Copyright (C) 2021-2023 John Vincent (TenSeventy7)
+
+     This program is free software: you can redistribute it and/or modify
+     it under the terms of the GNU General Public License as published by
+     the Free Software Foundation, either version 3 of the License, or
+     (at your option) any later version.
+
+     This program is distributed in the hope that it will be useful,
+     but WITHOUT ANY WARRANTY; without even the implied warranty of
+     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+     GNU General Public License for more details.
+
+     You should have received a copy of the GNU General Public License
+     along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<!--
+    This file contains permissions to be granted by default. Default
+    permissions are granted to special platform components and to apps
+    that are approved to get default grants. The special components
+    are apps that are expected to work out-of-the-box as they provide
+    core use cases such as default dialer, default email, etc. These
+    grants are managed by the platform. The apps that are additionally
+    approved for default grants are ones that provide carrier specific
+    functionality, ones legally required at some location, ones providing
+    alternative disclosure and opt-out UI, ones providing highlight features
+    of a dedicated device, etc. This file contains only the latter exceptions.
+    Fixed permissions cannot be controlled by the user and need a special
+    approval. Typically these are to ensure either legally mandated functions
+    or the app is considered a part of the OS.
+-->
+<exceptions>
+  <exception package="cf.tenseventyseven.fresh">
+    <permission name="android.permission.POST_NOTIFICATIONS" fixed="false"/>
+
+    <!-- 
+        TenSeventy7: Mark 'storage' permissions fixed as this is required
+        for firmware updating. Users shouldn't be able to disable this.
+    -->
+    <permission name="android.permission.READ_EXTERNAL_STORAGE" fixed="true"/>
+    <permission name="android.permission.WRITE_EXTERNAL_STORAGE" fixed="true"/>
+    <permission name="android.permission.READ_MEDIA_AUDIO" fixed="true"/>
+    <permission name="android.permission.READ_MEDIA_VIDEO" fixed="true"/>
+    <permission name="android.permission.READ_MEDIA_IMAGES" fixed="true"/> 
+  </exception>
+</exceptions>
