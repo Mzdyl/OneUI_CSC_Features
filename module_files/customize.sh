@@ -72,12 +72,11 @@ if [[ $(Volume_key_monitoring) == 0 ]]; then
 	REPLACE="
 	/system/priv-app/ShareLive
 	/system/app/AllShareAware
-	/system/app/DAAgent
 	/system/app/MdxKitService
 "
 
 #	# 安装的应用程序列表
-#	app_names=("AllShareAware" "ChinaHiddenMenu" "ChnFileShareKitService" "DAAgent" "MdxKitService")
+#	app_names=("AllShareAware" "ChinaHiddenMenu" "ChnFileShareKitService"  "MdxKitService")
 #	
 #	# 安装应用程序到设备
 #	for app_name in "${app_names[@]}"
@@ -125,7 +124,6 @@ else
 	rm -rf "$MODPATH/system/app/AllShareAware"
 	rm -rf "$MODPATH/system/app/ChinaHiddenMenu"
 	rm -rf "$MODPATH/system/app/ChnFileShareKitService"
-	rm -rf "$MODPATH/system/app/DAAgent"
 	rm -rf "$MODPATH/system/app/MdxKitService"
 	
 fi
@@ -134,7 +132,7 @@ fi
 #ui_print "BixbyHomeCN_Disable"
 #wget -c "https://github.com/Mzdyl/OneUI_CSC_Features/raw/main/APK/app/BixbyHomeCN_Disable/BixbyHomeCN_Disable.apk" -P "$MODPATH/system/app/BixbyHomeCN_Disable/"
 #
-#all_app_names=("Firewall" "SamsungYellowPage" "ChnFileShareKitService" "DAAgent" "MdxKitService")
+#all_app_names=("Firewall" "SamsungYellowPage" "ChnFileShareKitService" "MdxKitService")
 #
 #for all_app_name in "${all_app_names[@]}"
 #do

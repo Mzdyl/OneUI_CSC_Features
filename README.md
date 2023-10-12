@@ -46,6 +46,8 @@
 
 添加 黄页
 
+移除对 dual message 的替换，推荐使用 yufzz大佬 的onebox 实现无限制多开
+
 感谢列表:
 
 [Samsung_Additional_Features](https://github.com/el0xren/Samsung_Additional_Features)
