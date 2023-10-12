@@ -111,15 +111,16 @@ if [[ $(Volume_key_monitoring) == 0 ]]; then
 else
 	ui_print "精简功能版开始安装"
 	sleep 0.5
+	REPLACE="
+  /system/app/MinusOnePage
+  /system/priv-app/Firewall
+  "
 	rm -rf "$MODPATH/system/priv-app/AppLock"
-	rm -rf "$MODPATH/system/priv-app/BixbyTouch"
 	rm -rf "$MODPATH/system/priv-app/ShareLive"
-	rm -rf "$MODPATH/system/heimdallddata/"
 	rm -rf "$MODPATH/system/etc/default-permissions"
 	rm -rf "$MODPATH/system/etc/sysconfig/bixbytouchapp.xml"
 	rm -rf "$MODPATH/system/etc/permissions/privapp-permissions-com.samsung.android.app.sharelive.xml"
 	rm -rf "$MODPATH/system/etc/permissions/privapp-permissions-com.samsung.android.applock.xml"
-	rm -rf "$MODPATH/system/etc/permissions/privapp-permissions-com.samsung.android.bixbytouch.xml"
 	rm -rf "$MODPATH/system/etc/permissions/privapp-permissions-com.samsung.android.mdx.xml"
 	rm -rf "$MODPATH/system/app/AllShareAware"
 	rm -rf "$MODPATH/system/app/ChinaHiddenMenu"
@@ -153,8 +154,6 @@ set_perm_recursive  $MODPATH  0  0  0777  0777
 # 此命令会删除下列路径文件夹内的所有文件
 
 REPLACE="
-/system/app/MinusOnePage
-/system/priv-app/Firewall
 "
 # 这个文件 (customize.sh) 将被安装脚本在 util_functions.sh 之后 source 化（设置为环境变量）
 # 如果你需要自定义操作, 请在这里以函数方式定义它们 然后在 update-binary 里调用这些函数
