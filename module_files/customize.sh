@@ -60,7 +60,7 @@ mv $MODPATH/optics/configs/carriers/TGY $MODPATH/$CSC_DIR
 #mv $MODPATH/optics/configs/carriers/TGY $MODPATH/optics/configs/carriers/$CSC
 
 ui_print "—————————————————————————————————————"
-ui_print "- 按音量键＋: 安装全功能版（有BUG）"
+ui_print "- 按音量键＋: 安装全功能版（有BUG,待修复）"
 ui_print "- 按音量键－: 安装精简功能版（无BUG，应该）"
 ui_print "—————————————————————————————————————"
 sleep 0.07
