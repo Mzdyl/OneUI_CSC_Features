@@ -1,6 +1,6 @@
 id=one-ui-features
 name=OneUI_CSC_Features
 author=Mzdyl
-description=为港版 OneUI 添加更多国行优秀特性
+description=为 OneUI 添加更多国行优秀特性
 updateJson=https://ghproxy.com/https://github.com/Mzdyl/OneUI_CSC_Features/blob/main/module.json
 

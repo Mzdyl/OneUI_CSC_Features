@@ -1,6 +1,6 @@
 # OneUI_CSC_Features
 
-##  OneUI 添加更多特性
+##  为 OneUI 添加更多特性
 
 #### ~~Make OneUI Greak Again~~
 
@@ -46,10 +46,16 @@
 
 添加 黄页
 
-移除对 dual message 的替换，推荐使用 yufzz大佬 的onebox 实现无限制多开
+移除对 dual message 的替换，推荐使用 yufzz大佬 的 onebox 实现无限制多开
 
 感谢列表:
 
 [Samsung_Additional_Features](https://github.com/el0xren/Samsung_Additional_Features)
 
 [SamsungKOO2CHC](https://github.com/y6yuan/SamsungKOO2CHC)
+
+[NcX ROM features pack](https://xdaforums.com/t/ncx-rom-features-pack-magisk-module.4583543)
+
+[Decoded_CSC_Features_Files_AIO](https://xdaforums.com/t/magisk-module-exynos-snapdragon-test-decoded_csc_features_files-esim-support.4082445/)
+
+[OmcTextDecoder](https://github.com/fei-ke/OmcTextDecoder)
