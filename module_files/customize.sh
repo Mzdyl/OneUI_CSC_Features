@@ -54,6 +54,15 @@ sleep 0.07
 echo -en "\nOneUI CSC Features\nby Mzdyl\n\n"
 ui_print "- $D    "
 
+
+# 检查KSU
+if [ -n "$KSU" ]; then
+  echo "脚本运行在KernelSU环境下"
+  echo "暂未适配，请静候佳音"
+else
+  echo "脚本运行在Magisk环境下"
+fi
+
 ui_print "- 你的设备地区CSC是 $CSC 尝试自动适配"
 CSC_DIR=$(find /optics/configs/carriers -type d -name "$CSC")
 mv $MODPATH/optics/configs/carriers/TGY $MODPATH/$CSC_DIR
