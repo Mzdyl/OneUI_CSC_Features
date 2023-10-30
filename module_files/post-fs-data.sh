@@ -13,14 +13,6 @@ MODDIR=${0%/*}
 mount --bind $MODDIR/optics /optics
 mount --bind $MODDIR/prism /prism
 
-#mkdir -p $MODDIR/system/vendor/etc
-#cp -af /vendor/etc/floating_feature.xml $MODDIR/system/vendor/etc
-#
-## BixbyTouch
-#sed -i '/<\/SecFloatingFeatureSet>/i\<SEC_FLOATING_FEATURE_COMMON_SUPPORT_BIXBY_TOUCH>TRUE<\/SEC_FLOATING_FEATURE_COMMON_SUPPORT_BIXBY_TOUCH>' $MODDIR/system/vendor/etc/floating_feature.xml
-## Auto Power on and off
-#sed -i '/<\/SecFloatingFeatureSet>/i\<SEC_FLOATING_FEATURE_SETTINGS_SUPPORT_AUTO_POWER_ON_OFF>TRUE<\/SEC_FLOATING_FEATURE_SETTINGS_SUPPORT_AUTO_POWER_ON_OFF>' $MODDIR/system/vendor/etc/floating_feature.xml
-
 
 # 强制全局240Hz采样率
 echo 1 > /proc/touchpanel/game_switch_enable
