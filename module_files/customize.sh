@@ -19,7 +19,6 @@
 # IS64BIT(bool)：如果$ARCH是arm64或者x64则值为true
 # API(int)：设备的 API 级别（Android 版本）（例如21，对于 Android 5.0）
 
-
 # 监听音量键
 Volume_key_monitoring() {
 	local choose
@@ -45,15 +44,13 @@ POSTFSDATA=true
 LATESTARTSERVICE=true
 SKIPUNZIP=0
 
-
 D="`grep_prop description $TMPDIR/module.prop`"
 CSC="`getprop ro.boot.sales_code`"
 
-#开始安装
+# 开始安装
 sleep 0.07
 echo -en "\nOneUI CSC Features\nby Mzdyl\n\n"
 ui_print "- $D    "
-
 
 # 检查KSU
 if [ -n "$KSU" ]; then
@@ -72,8 +69,6 @@ ui_print "- 按音量键＋: 安装全功能版（有BUG,待修复）"
 ui_print "- 按音量键－: 安装精简功能版（无BUG，应该）"
 ui_print "—————————————————————————————————————"
 sleep 0.07
-#ui_print "— 正在联网下载软件包"
-
 
 if [[ $(Volume_key_monitoring) == 0 ]]; then
 	ui_print "全功能版开始安装"
@@ -81,16 +76,15 @@ if [[ $(Volume_key_monitoring) == 0 ]]; then
 	/system/priv-app/ShareLive
 	/system/app/AllShareAware
 	/system/app/MdxKitService
-"
-
+	"
 	
 else
 	ui_print "精简功能版开始安装"
 	sleep 0.5
 	REPLACE="
-  /system/app/MinusOnePage
-  /system/priv-app/Firewall
-  "
+	/system/app/MinusOnePage
+	/system/priv-app/Firewall
+	"
 	rm -rf "$MODPATH/system/priv-app/AppLock"
 	rm -rf "$MODPATH/system/priv-app/ShareLive"
 	rm -rf "$MODPATH/system/etc/default-permissions"
@@ -102,9 +96,7 @@ else
 	rm -rf "$MODPATH/system/app/ChinaHiddenMenu"
 	rm -rf "$MODPATH/system/app/ChnFileShareKitService"
 	rm -rf "$MODPATH/system/app/MdxKitService"
-	
 fi
-
 
 ui_print "添加 切换至使用更好的 WLAN 网络"
 settings put global sem_wifi_switch_to_better_wifi_supported 1
