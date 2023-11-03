@@ -22,16 +22,13 @@ jobs:
           cd $GITHUB_WORKSPACE/${{ env.ModuleFolderName }}
           zip -q -r ${{ env.ModuleFolderName }}.zip *
           mv $GITHUB_WORKSPACE/${{ env.ModuleFolderName }}/${{ env.ModuleFolderName }}.zip "$GITHUB_WORKSPACE"/GithubRelease
-          cd "$GITHUB_WORKSPACE"
-          touch file.log
-          echo "${{ env.ModuleFolderName }}.zip" > file.log
       - name: 3.上传到Github Release
         uses: ncipollo/release-action@main
         with: 
           artifacts: ${{ github.workspace }}/GithubRelease/*
-          name: "${{ env.ModuleFolderName }} ${{ env.version }}"
+          name: "OneUI_CSC_Features ${{ env.version }}"
           tag: "${{ env.version }}"
-          bodyFile: "${{ github.workspace }}/file.log"
+          bodyFile: ${{ github.workspace }}/changelog.md  # 使用 changelog.md 作为版本描述
           allowUpdates: true
           artifactErrorsFailBuild: true
           makeLatest: true
