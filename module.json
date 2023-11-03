@@ -1,6 +1,6 @@
 {
   "version": "v1.2mini",
   "versionCode": 12,
-  "zipUrl": "https://github.com/Mzdyl/OneUI_CSC_Features/releases/download/v1.1/OneUI_CSC_Features.zip",
-  "changelog": "https://ghproxy.com/https://github.com/Mzdyl/OneUI_CSC_Features/blob/main/changelog.md"
+  "zipUrl": "",
+  "changelog": "https://raw.githubusercontent.com/Mzdyl/OneUI_CSC_Features/essential/changelog.md"
 }
