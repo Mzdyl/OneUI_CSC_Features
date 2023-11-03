@@ -61,8 +61,8 @@ jobs:
 #          if git commit -m "更新 .gitattributes"; then
 #          echo "更新 .gitattributes: Success!"
 #          fi
-      - if: ${{ env.push == 'true' }}
-        name: 6. 推送到Magisk Module仓库
-        uses: ad-m/github-push-action@master
-        with: 
-          branch: ${{ github.ref }}
+#      - if: ${{ env.push == 'true' }}
+#        name: 6. 推送到Magisk Module仓库
+#        uses: ad-m/github-push-action@master
+#        with: 
+#          branch: ${{ github.ref }}
