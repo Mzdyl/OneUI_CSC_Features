@@ -99,11 +99,14 @@ else
 	rm -rf "$MODPATH/system/app/MdxKitService"
 fi
 
-ui_print "添加 切换至使用更好的 WLAN 网络"
-settings put global sem_wifi_switch_to_better_wifi_supported 1
-ui_print "添加 关闭 ADB 安装验证"
-settings put global verifier_verify_adb_installs 0
+ui_print "移植 Fresh 系统相关功能代码"
 
+ui_print "添加 切换至使用更好的 WLAN 网络"
+ui_print "添加 关闭 ADB 安装验证"
+ui_print "添加 禁用锁帧"
+ui_print "添加 强制全局240Hz采样率"
+
+ui_print "软件增删改详见 README.md"
 set_perm_recursive  $MODPATH  0  0  0777  0777
 
 
