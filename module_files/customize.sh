@@ -55,7 +55,8 @@ ui_print "- $D    "
 # 检查KSU
 if [ -n "$KSU" ]; then
   echo "脚本运行在KernelSU环境下"
-  echo "暂未适配，请静候佳音"
+  echo "理论适配，自行测试"
+  echo "如有问题请优先尝试卸载重装"
 else
   echo "脚本运行在Magisk环境下"
 fi
