@@ -26,8 +26,13 @@ jobs:
           jq . $GITHUB_WORKSPACE/module.json > $GITHUB_WORKSPACE/new.json
           rm -rf $GITHUB_WORKSPACE/module.json && mv $GITHUB_WORKSPACE/new.json $GITHUB_WORKSPACE/module.json
           git add ./module.json
-          if git commit -m "v${{ env.version }}"; then
-          echo "push=true" >> $GITHUB_ENV
+          if git commit -m "${{ env.version }}"; then
+              echo "push=true" >> $GITHUB_ENV
           else
-          echo "push=false" >> $GITHUB_ENV
+              echo "push=false" >> $GITHUB_ENV
           fi
+      - if: ${{ env.push == 'true' }}
+        name: 4. 推送到Magisk Module仓库
+        uses: ad-m/github-push-action@master
+        with:
+          branch: ${{ github.ref }}
