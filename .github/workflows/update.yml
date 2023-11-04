@@ -1,13 +1,10 @@
 name: release
 on: 
-  push: 
-    branches: 
-      - main
   workflow_dispatch:
-jobs:
-  build:
+jobs: 
+  build: 
     runs-on: ubuntu-latest
-    steps:
+    steps: 
       - uses: actions/checkout@main
       - name: 1. 准备文件
         run: |
