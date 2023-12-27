@@ -7,5 +7,6 @@
         <permission name="android.permission.READ_PRIVILEGED_PHONE_STATE"/>
         <permission name="android.permission.INTERACT_ACROSS_USERS"/>
         <permission name="com.android.voicemail.permission.WRITE_VOICEMAIL"/>
+        <permission name="android.permission.SCHEDULE_EXACT_ALARM"/>
     </privapp-permissions>
 </permissions>

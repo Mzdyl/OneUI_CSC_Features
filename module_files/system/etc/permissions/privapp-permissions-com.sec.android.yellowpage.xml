@@ -1,0 +1,5 @@
+<permissions>
+    <privapp-permissions package="com.sec.android.yellowpage">
+        <permission name="android.permission.SCHEDULE_EXACT_ALARM"/>
+    </privapp-permissions>
+</permissions>
