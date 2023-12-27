@@ -78,8 +78,6 @@ com.samsung.vvm.se
 com.samsung.vvm.se
 com.spectrum.cm.headless
 com.samsung.vvm.tfn
-com.samsung.android.app.omcagent
-com.samsung.android.sdm.config
 com.amazon.mShop.android.shopping
 com.amazon.appmanager
 com.amazon.appmanager

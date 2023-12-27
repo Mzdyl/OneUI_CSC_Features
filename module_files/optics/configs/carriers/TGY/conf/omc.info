@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <omcInfo>
   <contentType>0</contentType>
-  <version>SAOMC_SM-G9910_CHC_CHC_13_0014</version>
+  <version>SAOMC_SM-G9910_CHC_CHC_14_0009</version>
   <model>
     <name>SM-G9910</name>
   </model>
   <catalog>
     <customer>yes</customer>
-    <customerEdition>ED0003</customerEdition>
-    <carrierListVersion>130021</carrierListVersion>
+    <customerEdition>ED0004</customerEdition>
+    <carrierListVersion>140025</carrierListVersion>
     <cscfeature>yes</cscfeature>
     <carrierfeature>yes</carrierfeature>
     <cp>no</cp>

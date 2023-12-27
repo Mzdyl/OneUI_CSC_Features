@@ -8,8 +8,8 @@ on property:vendor.security.vaultkeeper.native=1
 on property:mdc.singlesku.activated=*
     oem_key_update
 on post-fs
-    setprop ro.omc.build.version G9910OZS3EWD3
-    setprop ro.omc.build.id 64609485
+    setprop ro.omc.build.version G9910OZS6FWK7
+    setprop ro.omc.build.id 74430114
     setprop ro.omc.changetype NONE
     setprop ro.simbased.changetype NONE
     setprop ro.omc.disabler FALSE
