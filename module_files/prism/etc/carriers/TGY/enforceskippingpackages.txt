@@ -1,4 +1,4 @@
-217
+215
 100Game_PERSONAL_4x4_PF36_2009_2.0.2.apk
 ATTThanks_VPL_ATT.apk
 AccessTmobile_TMO.apk
@@ -104,7 +104,6 @@ NameIDVPL_TMO.apk
 NameID_MTR.apk
 NextRadio_vpl_AIO.apk
 OBDM_Permissions.apk
-OMCAgent5.apk
 OPENMarketHiddenMenu.apk
 OiApps.apk
 OiAppsClube.apk
@@ -119,7 +118,6 @@ Privacy.apk
 Push_To_Talk_BMC.apk
 QoSIndicator_ATT.apk
 RemoteSupport_ATT.apk
-SDMConfig.apk
 SDMHiddenMenu.apk
 SEIOAgent.apk
 SKTHiddenMenu.apk
