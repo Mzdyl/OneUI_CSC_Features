@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomerData>
   <GeneralInfo>
-    <CSCEdition>ED0003</CSCEdition>
+    <CSCEdition>ED0004</CSCEdition>
     <Country>China</Country>
     <CountryISO>CN</CountryISO>
     <Region>CHN</Region>
@@ -296,7 +296,7 @@
         <NbNetProfile>3</NbNetProfile>
         <NetworkName>中国联通</NetworkName>
         <ProfBrowser>沃宽带用户连接互联网</ProfBrowser>
-        <ProfMMS>沃宽带用户手机上网</ProfMMS>
+        <ProfMMS>联通彩信</ProfMMS>
         <ProfIMS>ims</ProfIMS>
         <ProfXCAP>沃宽带用户连接互联网</ProfXCAP>
       </ProfileHandle>
@@ -448,7 +448,7 @@
         <IpVersion>ipv4v6</IpVersion>
         <RoamingIpVersion>ipv4v6</RoamingIpVersion>
         <Editable>no</Editable>
-        <ProfileName>沃宽带用户手机上网</ProfileName>
+        <ProfileName>联通彩信</ProfileName>
         <URL>http://mmsc.myuni.com.cn</URL>
         <Protocol>http</Protocol>
         <MTUSize>1300</MTUSize>
