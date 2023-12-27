@@ -66,17 +66,14 @@ CSC_DIR=$(find /optics/configs/carriers -type d -name "$CSC")
 mv $MODPATH/optics/configs/carriers/TGY $MODPATH/$CSC_DIR
 
 ui_print "—————————————————————————————————————"
-ui_print "- 按音量键＋: 安装全功能版（有BUG,待修复）"
-ui_print "- 按音量键－: 安装精简功能版（无BUG，应该）"
+ui_print "- 按音量键＋: 安装全功能版（可能BUG,待修复）"
+ui_print "- 按音量键－: 安装精简功能版（暂未适配，请不要选择）"
 ui_print "—————————————————————————————————————"
 sleep 0.07
 
 if [[ $(Volume_key_monitoring) == 0 ]]; then
 	ui_print "全功能版开始安装"
 	REPLACE="
-	/system/priv-app/ShareLive
-	/system/app/AllShareAware
-	/system/app/MdxKitService
 	"
 	
 else
