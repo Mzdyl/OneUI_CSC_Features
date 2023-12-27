@@ -16,9 +16,7 @@
     <CscFeature_Clock_EnableAutoPowerOnOffMenu>TRUE</CscFeature_Clock_EnableAutoPowerOnOffMenu>
     <CscFeature_Clock_SupportAlarmOptionMenuForWorkingDay>TRUE</CscFeature_Clock_SupportAlarmOptionMenuForWorkingDay>
     <CscFeature_Clock_ExclusiveEnablingAutoPowerSetting>TRUE</CscFeature_Clock_ExclusiveEnablingAutoPowerSetting>
-    <CscFeature_Common_ConfigAllowedPackagesDuringDataSaving>com.samsung.android.smartcallprovider</CscFeature_Common_ConfigAllowedPackagesDuringDataSaving>
     <CscFeature_Common_ConfigSvcProviderForUnknownNumber>whitepages,whitepages,off</CscFeature_Common_ConfigSvcProviderForUnknownNumber>
-    <CscFeature_Common_EnableVIPMode>TRUE</CscFeature_Common_EnableVIPMode>
     <CscFeature_Common_EnhanceImageQuality>TRUE</CscFeature_Common_EnhanceImageQuality>
     <CscFeature_Common_SupportGmsAlarmManager>TRUE</CscFeature_Common_SupportGmsAlarmManager>
     <CscFeature_Common_SupportZProjectFunctionInGlobal>TRUE</CscFeature_Common_SupportZProjectFunctionInGlobal>
@@ -26,11 +24,9 @@
     <CscFeature_Contact_AddPreloadedSpeedDialAs>None,0,None,None</CscFeature_Contact_AddPreloadedSpeedDialAs>
     <CscFeature_Contact_CheckSimAlphaLength4UnicodeName>TRUE</CscFeature_Contact_CheckSimAlphaLength4UnicodeName>
     <CscFeature_Contact_ConfigForYellowPage>SHOW</CscFeature_Contact_ConfigForYellowPage>
-    <CscFeature_Contact_ConfigDialerFont>FixedKeypadLetter</CscFeature_Contact_ConfigDialerFont>
     <CscFeature_Contact_ConfigImsOpStyle>CHNOPEN</CscFeature_Contact_ConfigImsOpStyle>
     <CscFeature_Contact_ConfigOpStyleVariation>CHC</CscFeature_Contact_ConfigOpStyleVariation>
     <CscFeature_Contact_ConfigTelNumType>CHC</CscFeature_Contact_ConfigTelNumType>
-    <CscFeature_Contact_ConfigZipCodeInputType>numeric</CscFeature_Contact_ConfigZipCodeInputType>
     <CscFeature_Contact_DisableMenuNameOrder>TRUE</CscFeature_Contact_DisableMenuNameOrder>
     <CscFeature_Contact_EnableCopyToDialer>TRUE</CscFeature_Contact_EnableCopyToDialer>
     <CscFeature_Contact_EnableMultiplePinyinSearch>TRUE</CscFeature_Contact_EnableMultiplePinyinSearch>
@@ -71,15 +67,10 @@
     <CscFeature_RIL_CallerIdMatchingDigit>11</CscFeature_RIL_CallerIdMatchingDigit>
     <CscFeature_RIL_StkCallControlwithIMS>TRUE</CscFeature_RIL_StkCallControlwithIMS>
     <CscFeature_RIL_SupportEsim>FALSE</CscFeature_RIL_SupportEsim>
-    <CscFeature_SPen_ConfigDefTranslatorSolution>BaiduPref</CscFeature_SPen_ConfigDefTranslatorSolution>
-    <CscFeature_Security_DeleteCardApplet>deactivate</CscFeature_Security_DeleteCardApplet>
-    <CscFeature_Setting_BlockToSelectDunApnType>TRUE</CscFeature_Setting_BlockToSelectDunApnType>
     <CscFeature_Setting_ConfigAboutDeviceItems>modelnumberDSsuffix=disabled;</CscFeature_Setting_ConfigAboutDeviceItems>
     <CscFeature_Setting_ConfigListForDisablingTimeZoneItem>Asia/Urumqi</CscFeature_Setting_ConfigListForDisablingTimeZoneItem>
-    <CscFeature_Setting_DisableELabelRated>TRUE</CscFeature_Setting_DisableELabelRated>
     <CscFeature_Setting_EnableHwVersionDisplay>TRUE</CscFeature_Setting_EnableHwVersionDisplay>
     <CscFeature_Setting_EnableMenuDownloadContents>NULL</CscFeature_Setting_EnableMenuDownloadContents>
-    <CscFeature_Setting_SupportBatteryCapacityTypicalDesc>FALSE</CscFeature_Setting_SupportBatteryCapacityTypicalDesc>
     <CscFeature_Setting_SupportDataUsageReminder>TRUE</CscFeature_Setting_SupportDataUsageReminder>
     <CscFeature_Setting_SupportELabelFccId>FALSE</CscFeature_Setting_SupportELabelFccId>
     <CscFeature_Setting_SupportPreInstallerShowPreloadAppList>TRUE</CscFeature_Setting_SupportPreInstallerShowPreloadAppList>
@@ -110,7 +101,6 @@
     <CscFeature_Weather_ConfigCpType>CMA</CscFeature_Weather_ConfigCpType>
     <CscFeature_Weather_ConfigDefRefreshInterval>3</CscFeature_Weather_ConfigDefRefreshInterval>
     <CscFeature_Weather_ConfigDefTempUnit>1</CscFeature_Weather_ConfigDefTempUnit>
-    <CscFeature_Web_DisableChooser4>audio/*,audio/mp3,audio/x-mp3,audio/mpeg,audio/mp4,audio/mp4a-latm,application/sdp,video/mpeg,video/3gp,video/3gpp,video/3gpp2,video/x-ms-asf,video/x-ms-wmv,video/x-ms-wma,video/webm,video/flv,video/mkv,video/divx,video/avi,video/skm,video/sktm,video/k3g,video/ak3g,video/x-msvideo,video/vnd.ms-playready.media.pyv,application/x-mpegurl,application/vnd.apple.mpegurl,audio/x-mpegurl,application/x-mpegurl,video/mp4</CscFeature_Web_DisableChooser4>
     <CscFeature_Web_EnableAutoSimHomeUrlInProfile>FALSE</CscFeature_Web_EnableAutoSimHomeUrlInProfile>
     <CscFeature_Wifi_ConfigSnsStatus>DEFAULT_ON</CscFeature_Wifi_ConfigSnsStatus>
     <CscFeature_Wifi_SupportWapi>TRUE</CscFeature_Wifi_SupportWapi>
