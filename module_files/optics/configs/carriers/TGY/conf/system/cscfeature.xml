@@ -76,7 +76,8 @@
     <CscFeature_Setting_SupportPreInstallerShowPreloadAppList>TRUE</CscFeature_Setting_SupportPreInstallerShowPreloadAppList>
     <CscFeature_Setting_SupportRealTimeNetworkSpeed>TRUE</CscFeature_Setting_SupportRealTimeNetworkSpeed>
     <CscFeature_SyncML_ConfigDevicePreId>IMEI</CscFeature_SyncML_ConfigDevicePreId>
-    <CscFeature_SystemUI_ConfigDefQuickSettingItem>Wifi,SoundMode,Bluetooth,RotationLock,AirplaneMode,Flashlight,MobileData,Hotspot,BatteryMode,Location,WindowsLink,ScreenRecorder,ShareLive,DesktopMode,AllShareCast,NearbyShare,BlueLightFilter,NightMode,Dnd,ScreenCapture,QRScanner</CscFeature_SystemUI_ConfigDefQuickSettingItem>
+    <CscFeature_SmartManager_ConfigSubFeatures>applock</CscFeature_SmartManager_ConfigSubFeatures>
+    <CscFeature_SystemUI_ConfigDefQuickSettingItem>Wifi,SoundMode,Bluetooth,RotationLock,AirplaneMode,Flashlight,MobileData,Hotspot,BatteryMode,Location,WindowsLink,ScreenRecorder,ShareLive,DesktopMode,AllShareCast,NearbyShare,BlueLightFilter,NightMode,Dnd,RedPacket,ScreenCapture,QRScanner</CscFeature_SystemUI_ConfigDefQuickSettingItem>
     <CscFeature_SystemUI_ConfigMaxRssiLevel>5</CscFeature_SystemUI_ConfigMaxRssiLevel>
     <CscFeature_SystemUI_ConfigOpBranding5GIcon>5GAvailable,RRCStateCheck,UseOneShapedIcon,UseDisplayTimer</CscFeature_SystemUI_ConfigOpBranding5GIcon>
     <CscFeature_SystemUI_ConfigOpBrandingForIndicatorIcon>CHC</CscFeature_SystemUI_ConfigOpBrandingForIndicatorIcon>
