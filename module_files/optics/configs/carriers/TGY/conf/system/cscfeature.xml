@@ -15,11 +15,7 @@
     <CscFeature_Clock_ConfigLocalTimerPreset>China</CscFeature_Clock_ConfigLocalTimerPreset>
     <CscFeature_Clock_EnableAutoPowerOnOffMenu>TRUE</CscFeature_Clock_EnableAutoPowerOnOffMenu>
     <CscFeature_Clock_SupportAlarmOptionMenuForWorkingDay>TRUE</CscFeature_Clock_SupportAlarmOptionMenuForWorkingDay>
-    <CscFeature_Clock_ExclusiveEnablingAutoPowerSetting>TRUE</CscFeature_Clock_ExclusiveEnablingAutoPowerSetting>
-    <CscFeature_Common_ConfigSvcProviderForUnknownNumber>whitepages,whitepages,off</CscFeature_Common_ConfigSvcProviderForUnknownNumber>
-    <CscFeature_Common_EnhanceImageQuality>TRUE</CscFeature_Common_EnhanceImageQuality>
-    <CscFeature_Common_SupportGmsAlarmManager>TRUE</CscFeature_Common_SupportGmsAlarmManager>
-    <CscFeature_Common_SupportZProjectFunctionInGlobal>TRUE</CscFeature_Common_SupportZProjectFunctionInGlobal>
+    <CscFeature_Clock_ExclusiveEnablingAutoPowerSetting>TRUE</CscFeature_Clock_ExclusiveEnablingAutoPowerSetting>    <CscFeature_Common_ConfigSvcProviderForUnknownNumber>whitepages,whitepages,off</CscFeature_Common_ConfigSvcProviderForUnknownNumber>
     <CscFeature_Contact_ANRConfig>1</CscFeature_Contact_ANRConfig>
     <CscFeature_Contact_AddPreloadedSpeedDialAs>None,0,None,None</CscFeature_Contact_AddPreloadedSpeedDialAs>
     <CscFeature_Contact_CheckSimAlphaLength4UnicodeName>TRUE</CscFeature_Contact_CheckSimAlphaLength4UnicodeName>
@@ -28,12 +24,9 @@
     <CscFeature_Contact_ConfigOpStyleVariation>CHC</CscFeature_Contact_ConfigOpStyleVariation>
     <CscFeature_Contact_ConfigTelNumType>CHC</CscFeature_Contact_ConfigTelNumType>
     <CscFeature_Contact_DisableMenuNameOrder>TRUE</CscFeature_Contact_DisableMenuNameOrder>
-    <CscFeature_Contact_EnableCopyToDialer>TRUE</CscFeature_Contact_EnableCopyToDialer>
-    <CscFeature_Contact_EnableMultiplePinyinSearch>TRUE</CscFeature_Contact_EnableMultiplePinyinSearch>
-    <CscFeature_Contact_EnablePuzzySearch>CHNGSM</CscFeature_Contact_EnablePuzzySearch>
+    <CscFeature_Contact_EnableCopyToDialer>TRUE</CscFeature_Contact_EnableCopyToDialer>    <CscFeature_Contact_EnablePuzzySearch>CHNGSM</CscFeature_Contact_EnablePuzzySearch>
     <CscFeature_Contact_ExportAllNumberToSIM>TRUE</CscFeature_Contact_ExportAllNumberToSIM>
     <CscFeature_Contact_LimitNameLength>250</CscFeature_Contact_LimitNameLength>
-    <CscFeature_Contact_SeparateLookupTable4ChinaDialerSearch>TRUE</CscFeature_Contact_SeparateLookupTable4ChinaDialerSearch>
     <CscFeature_Contact_SupportDuoVideoCall>TRUE</CscFeature_Contact_SupportDuoVideoCall>
     <CscFeature_Contact_UseUniNameField>TRUE</CscFeature_Contact_UseUniNameField>
     <CscFeature_DeviceManagement_ConfigOperator>25</CscFeature_DeviceManagement_ConfigOperator>
@@ -89,21 +82,13 @@
     <CscFeature_SystemUI_SupportAssistanceAppChooser>TRUE</CscFeature_SystemUI_SupportAssistanceAppChooser>
     <CscFeature_SystemUI_SupportDataUsageViewOnQuickPanel>TRUE</CscFeature_SystemUI_SupportDataUsageViewOnQuickPanel>
     <CscFeature_VT_ConfigCapability>three_widget,tx_disable</CscFeature_VT_ConfigCapability>
-    <CscFeature_VT_ConfigBearer>-CSVT</CscFeature_VT_ConfigBearer>
     <CscFeature_VT_ConfigCapability>three_widget,modify_auto_accept</CscFeature_VT_ConfigCapability>
-    <CscFeature_VT_SupportUnidirectionalVideo>TRUE</CscFeature_VT_SupportUnidirectionalVideo>
-    <CscFeature_Video_SupportDataPromptPopup>TRUE</CscFeature_Video_SupportDataPromptPopup>
     <CscFeature_VoiceCall_ConfigOpStyleForSpamCall>DELAYEDRING,SMARTMANAGER</CscFeature_VoiceCall_ConfigOpStyleForSpamCall>
     <CscFeature_VoiceCall_ConfigOpStyleForVolte>VolteCtc,CTC_VOLTE,wait_for_volte_regi_in_airplane_mode_ctc</CscFeature_VoiceCall_ConfigOpStyleForVolte>
     <CscFeature_VoiceCall_ConfigOpStyleForWaitingTone>CHNOPEN</CscFeature_VoiceCall_ConfigOpStyleForWaitingTone>
     <CscFeature_VoiceCall_ConfigOptStyleForCallBarring>RemoveCDMA</CscFeature_VoiceCall_ConfigOptStyleForCallBarring>
     <CscFeature_VoiceCall_ConfigRecording>RecordingAllowed</CscFeature_VoiceCall_ConfigRecording>
     <CscFeature_VoiceCall_SupportVolteHoldTone>NOT</CscFeature_VoiceCall_SupportVolteHoldTone>
-    <CscFeature_Weather_ConfigCpType>CMA</CscFeature_Weather_ConfigCpType>
-    <CscFeature_Weather_ConfigDefRefreshInterval>3</CscFeature_Weather_ConfigDefRefreshInterval>
-    <CscFeature_Weather_ConfigDefTempUnit>1</CscFeature_Weather_ConfigDefTempUnit>
-    <CscFeature_Web_EnableAutoSimHomeUrlInProfile>FALSE</CscFeature_Web_EnableAutoSimHomeUrlInProfile>
-    <CscFeature_Wifi_ConfigSnsStatus>DEFAULT_ON</CscFeature_Wifi_ConfigSnsStatus>
-    <CscFeature_Wifi_SupportWapi>TRUE</CscFeature_Wifi_SupportWapi>
+
   </FeatureSet>
 </SamsungMobileFeature>
