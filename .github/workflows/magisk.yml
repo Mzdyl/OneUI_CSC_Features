@@ -1,0 +1,52 @@
+name: Build Magisk Module
+
+on:
+  push:
+    paths:
+      - 'scr/**'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Set up NDK
+        uses: nttld/setup-ndk@v1
+        with:
+          ndk-version: r25c
+          
+      - name: Build Native Libraries
+        run: |
+          mkdir -p $GITHUB_WORKSPACE/module_files/libs
+
+          echo "Building auto_modify_cscfeature..."
+          cd $GITHUB_WORKSPACE/scr/auto_modify_cscfeature/
+          ndk-build
+          echo "Copying from $(pwd)/libs to $GITHUB_WORKSPACE/module_files/libs/"
+          cp -r libs/* $GITHUB_WORKSPACE/module_files/libs/
+
+          echo "Building auto_modify_json_csc..."
+          cd $GITHUB_WORKSPACE/scr/auto_modify_json_csc/
+          ndk-build
+          echo "Copying from $(pwd)/libs to $GITHUB_WORKSPACE/module_files/libs/"
+          cp -r libs/* $GITHUB_WORKSPACE/module_files/libs/
+
+          echo "Building cscdecode..."
+          cd $GITHUB_WORKSPACE/scr/cscdecode/
+          ndk-build
+          echo "Copying from $(pwd)/libs to $GITHUB_WORKSPACE/module_files/libs/"
+          cp -r libs/* $GITHUB_WORKSPACE/module_files/libs/
+
+      - name: Create Magisk Module
+        run: |
+          cd module_files
+          zip -r9 ../auto_modify_cscfeature.zip ./*
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: auto_modify_cscfeature
+          path: auto_modify_cscfeature.zip

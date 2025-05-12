@@ -1,0 +1,66 @@
+name: Package Submodules
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - auto_modify_cscfeature
+
+jobs:
+  package:
+    if: github.event_name == 'workflow_dispatch' || contains(github.event.head_commit.message, '[package-sub]')
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Find and package submodules
+        run: |
+          mkdir -p artifacts
+          for dir in sub/*/; do
+            if [ -d "$dir" ]; then
+              module_name=$(basename "$dir")
+              echo "Processing module: $module_name"
+              
+              # 进入子模块目录并直接打包内容，不包含父目录
+              cd "$dir"
+              zip -r "../../artifacts/${module_name}.zip" ./*
+              cd ../../
+            fi
+          done
+
+      - name: List created artifacts
+        run: ls -la artifacts/
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: packaged-submodules
+          path: artifacts/*.zip
+
+      - name: Create or update GitHub Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          release_name="OneUI_CSC_Features_Submodules"
+          release_tag="oneui-csc-features"
+          
+          # 检查release是否已存在
+          if gh release view "$release_tag" &>/dev/null; then
+            echo "Updating existing release: $release_name"
+            
+            # 上传所有ZIP文件到现有release，覆盖同名文件
+            for zip_file in artifacts/*.zip; do
+              gh release upload "$release_tag" "$zip_file" --clobber
+            done
+          else
+            echo "Creating new release: $release_name"
+            
+            # 创建新release并上传所有ZIP文件
+            gh release create "$release_tag" artifacts/*.zip \
+              --title "$release_name" \
+              --notes "自动生成的子模块打包release"
+          fi

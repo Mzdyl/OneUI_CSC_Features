@@ -1,0 +1,170 @@
+# 自用修改
+#ro.csc.country_code=China
+#ro.csc.countryiso_code=CN
+#ro.csc.sales_code=CHC
+
+#
+# 推荐 ro.csc.country_code 可以改 China
+# ro.csc.countryiso_code 推荐不改，不然回遇到国行特有的FCM限制，不过改了后可以在 游戏助推器获得 资源预下载 4D震动之类的（（没啥用的功能
+# ro.csc.sales_code=CHC 没具体测试，改了后我的设备无法开启定位
+#
+support.appRestore=1
+
+# 智能拖放
+ro.otch.support.entrance=true
+
+# 国行软SIM（漫游
+persist.sys.softsim.status=default,default
+persist.sys.softsim.netmode=4g
+persist.sys.softsim.type=default
+# 针对国内特供，流畅+，但RAM消耗++
+ro.sys.enlargebinderbuffer=true
+
+#------ ADB & 开发者调试相关 ------ 
+
+# 关闭 ADB 连接通知
+persist.adb.notify=0
+
+# 关闭 ANR（应用无响应）历史记录
+debugtool.anrhistory=0
+
+# 关闭严格模式（Strict Mode）
+persist.android.strictmode=0
+
+# 关闭过时 ABI 兼容性警告
+debug.wm.disable_deprecated_abi_dialog=true
+
+#dalvik.vm.checkjni=false             # 关闭 JNI 运行时检查（可能提高性能）
+#ro.kernel.android.checkjni=0         # 关闭内核级别 JNI 检查
+#ro.kernel.checkjni=0                 # 关闭 JNI 运行时检查
+#得不偿失
+
+# 关闭调试监控
+profiler.debugmonitor=false
+
+# 关闭调试器自动启动
+profiler.launch=false
+
+# 关闭 ANR 时自动生成 bug 报告
+profiler.hung.dumpdobugreport=false
+
+# 禁用错误报告
+profiler.force_disable_err_rpt=1
+
+# 禁用 ULOG 日志
+profiler.force_disable_ulog=1
+
+# ------ SurfaceFlinger & 界面渲染优化 ------ 
+
+# 关闭 SurfaceFlinger 调试信息输出
+debug.sf.dump=0
+
+# 关闭 SurfaceFlinger 相关的 DDMS 调试日志
+debug.sf.ddms=0 
+
+#debug.sf.gpu_comp_tiling=0           # 关闭 GPU 纹理优化（影响 GPU 计算性能）
+
+# 关闭 SurfaceFlinger 的后压机制（可能提高 UI 流畅度）
+debug.sf.disable_backpressure=1 
+
+#debug.sf.recomputecrop=0             # 关闭 SurfaceFlinger 重新计算裁剪（可能影响屏幕裁剪逻辑）
+#hwui.use_gpu_pixel_buffers=false     # 关闭 GPU 像素缓冲区（可能影响 UI 渲染性能）
+
+# ----- 硬件合成（HWC）& 屏幕显示 -----
+
+#debug.hwc.otf=0                      # 关闭 HWC（硬件合成）的 OTF（On-The-Fly）支持
+
+# 关闭 HWC 调试 Dump（减少日志生成）
+debug.hwc_dump_en=0
+
+#sdm.debug.disable_inline_rotator=1   # 关闭内联旋转器（可能优化 GPU 旋转操作）
+#sdm.debug.disable_skip_validate=1    # 关闭跳过验证优化（可能影响显示逻辑）
+
+# ----- 网络 & 通信优化 -----
+
+# 关闭 TCP 指标存储（可能减少 TCP 连接维护的开销）
+net.ipv4.tcp_no_metrics_save=1
+
+# 关闭 RTT（实时文本传输 Real-Time Text）
+config.disable_rtt=true
+
+# 关闭 IMS（IP 多媒体子系统）调试日志
+persist.ims.disableDebugLogs=1
+
+# 关闭 Wi-Fi Display（无线投屏）
+persist.debug.wfd.enable=0
+
+# ----- 传感器 & 设备传感器管理 -----
+
+# 关闭高通 SNS HAL（传感器 HAL 层调试）
+debug.qualcomm.sns.hal=0
+
+# 关闭高通 SNS 守护进程（管理传感器）
+debug.qualcomm.sns.daemon=0
+
+# 关闭高通 SNS 传感器库（影响传感器 API ）
+debug.qualcomm.sns.libsensor1=0
+
+# 关闭传感器 HAL 调试日志
+persist.debug.sensors.hal=0
+
+# ----- 系统日志 & 调试日志 -----
+
+# 禁用数据库慢查询日志（可减少数据库日志开销）
+db.log.slow_query_threshold=0
+
+# 关闭 GameD（游戏优化守护进程）
+debug.enable.gamed=0
+
+# 关闭 Wi-Fi 日志记录
+debug.enable.wl_log=0
+
+# 关闭电池日志
+ro.sf.battery_log=0
+
+# 关闭电池日志
+ro.sf.battery.log.enabled=0
+
+#rw.logger=0                          # 关闭系统日志记录（可能减少日志开销）
+
+# 关闭 Broadcom（博通）日志
+persist.brcm.log=none
+
+# 关闭 Broadcom CP 崩溃日志
+persist.brcm.cp_crash=none
+
+# 关闭 Broadcom AP 崩溃日志
+persist.brcm.ap_crash=none
+
+# 关闭 OEM Dump（可能影响错误调试）
+persist.oem.dump=0
+
+# 关闭 VIDC（高通视频解码）调试日志
+vidc.debug.level=0
+
+
+# ----- 性能优化 & 内存管理 -----
+
+# 关闭 KSM（Kernel Samepage Merging，内存合并优化）
+ro.config.ksm.support=false
+
+# 关闭 Google 统计数据收集（避免系统上报数据）
+ro.config.nocheckin=1
+
+#ro.compcache.default=0               # 关闭 Compcache（压缩交换空间） #过时了
+
+# 关闭 QEMU（虚拟机）GLES 支持（仅适用于模拟器）
+ro.kernel.qemu.gles=0
+
+# ----- 多媒体 & 视频处理 -----
+
+# 关闭 Stagefright（Android 多媒体框架）日志 URI 记录
+media.stagefright.log-uri=0
+
+
+# ----- 其他系统调试选项 -----
+
+# 关闭 ATrace（Android 性能跟踪）日志
+debug.atrace.tags.enableflags=0x0
+
+

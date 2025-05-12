@@ -1,0 +1,3 @@
+[submodule "sub"]
+	path = sub
+	url = https://github.com/Mzdyl/OneUI_Features_Sub.git

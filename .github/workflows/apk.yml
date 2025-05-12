@@ -1,0 +1,35 @@
+name: Flutter Build APK
+
+on:
+  workflow_dispatch:  # 允许手动触发
+  
+jobs:
+  build:
+    name: Build APK for Android
+    runs-on: ubuntu-latest  
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.29.1'
+
+      - name: Navigate to /app directory
+        run: cd app
+
+      - name: Install dependencies
+        run: flutter pub get
+        working-directory: ./app
+
+      - name: Build APK
+        run: flutter build apk --release
+        working-directory: ./app
+
+      - name: Upload APK to GitHub Releases (Optional)
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-release-apk
+          path: ./app/build/app/outputs/flutter-apk/app-release.apk
