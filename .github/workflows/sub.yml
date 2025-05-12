@@ -3,8 +3,6 @@ name: Package Submodules
 on:
   workflow_dispatch:
   push:
-    branches:
-      - auto_modify_cscfeature
 
 jobs:
   package:
