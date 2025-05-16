@@ -44,7 +44,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           release_name="OneUI_CSC_Features_Submodules"
-          release_tag="oneui-csc-features"
+          release_tag="OneUI_Features_Sub"
           
           # 检查release是否已存在
           if gh release view "$release_tag" &>/dev/null; then
