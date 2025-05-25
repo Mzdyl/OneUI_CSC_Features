@@ -2,8 +2,8 @@ name: Build Magisk Module
 
 on:
   push:
-    paths:
-      - 'scr/**'
+#   paths:
+#     - 'scr/**'
   workflow_dispatch:
 
 jobs:
