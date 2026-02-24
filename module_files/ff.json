@@ -1,0 +1,184 @@
+[
+  {
+    "key": "SEC_FLOATING_FEATURE_SMARTMANAGER_CONFIG_PACKAGE_NAME",
+    "value": "com.samsung.android.sm_cn",
+    "command": "MODIFY",
+    "desc": "修改 智能管理器包名",
+    "enabled": true
+  },
+  {
+    "key": "SEC_FLOATING_FEATURE_SECURITY_CONFIG_DEVICEMONITOR_PACKAGE_NAME",
+    "value": "com.samsung.android.sm.devicesecurity.tcm",
+    "command": "MODIFY",
+    "desc": "修改 设备监控包名",
+    "enabled": true
+  },
+  {
+    "key": "SEC_FLOATING_FEATURE_SETTINGS_SUPPORT_AUTO_POWER_ON_OFF",
+    "value": "TRUE",
+    "command": "MODIFY",
+    "desc": "修改 自动开关机支持",
+    "enabled": true
+  },
+  {
+    "key": "SEC_FLOATING_FEATURE_AUDIO_SUPPORT_MICMODE_QUICK_PANEL",
+    "value": "TRUE",
+    "command": "MODIFY",
+    "desc": "修改 快速设置面板切换麦克风模式",
+    "enabled": true
+  },
+  {
+    "key": "SEC_FLOATING_FEATURE_AUDIO_SUPPORT_VOIP_VIA_SMART_MONITOR",
+    "value": "TRUE",
+    "command": "MODIFY",
+    "desc": "修改 智能监控进行VoIP支持",
+    "enabled": true
+  },
+  {
+    "key": "SEC_FLOATING_FEATURE_BATTERY_SUPPORT_BSOH_GALAXYDIAGNOSTICS",
+    "value": "TRUE",
+    "command": "MODIFY",
+    "desc": "修改 电池健康状态检测支持",
+    "enabled": true
+  },
+  {
+    "key": "SEC_FLOATING_FEATURE_BATTERY_SUPPORT_BSOH_SETTINGS",
+    "value": "TRUE",
+    "command": "MODIFY",
+    "desc": "修改 电池健康设置支持",
+    "enabled": true
+  },
+  {
+    "key": "SEC_FLOATING_FEATURE_BATTERY_SUPPORT_PASS_THROUGH",
+    "value": "TRUE",
+    "command": "MODIFY",
+    "desc": "修改 旁路供电支持",
+    "enabled": true
+  },
+  {
+    "key": "SEC_FLOATING_FEATURE_BIXBY_SUPPORT_BIXBYKWD",
+    "value": "TRUE",
+    "command": "MODIFY",
+    "desc": "修改 支持 Bixby 关键词检测",
+    "enabled": true
+  },
+  {
+    "key": "SEC_FLOATING_FEATURE_BIXBY_SUPPORT_SANXINGXIAOBEIKWD",
+    "value": "TRUE",
+    "command": "MODIFY",
+    "desc": "修改 支持“三星小贝”语音助手的关键词唤醒",
+    "enabled": true
+  },
+  {
+    "key": "SEC_FLOATING_FEATURE_COMMON_SUPPORT_BIXBY_TOUCH",
+    "value": "TRUE",
+    "command": "MODIFY",
+    "desc": "修改 圈及搜支持",
+    "enabled": true
+  },
+  {
+    "key": "SEC_FLOATING_FEATURE_COMMON_SUPPORT_CARLIFE",
+    "value": "TRUE",
+    "command": "MODIFY",
+    "desc": "修改 Carlife 支持",
+    "enabled": true
+  },
+  {
+    "key": "SEC_FLOATING_FEATURE_COMMON_GOOGLE_AI_SEARCH",
+    "value": "TRUE",
+    "command": "MODIFY",
+    "desc": "修改 Google AI 搜索支持",
+    "enabled": true
+  },
+  {
+    "key": "SEC_FLOATING_FEATURE_FRAMEWORK_SUPPORT_SMART_SUGGESTIONS_WIDGET",
+    "value": "TRUE",
+    "command": "MODIFY",
+    "desc": "修改 智能建议小部件支持",
+    "enabled": true
+  },
+  {
+    "key": "SEC_FLOATING_FEATURE_GENAI_SUPPORT_OFFLINE_LANGUAGEMODEL",
+    "value": "TRUE",
+    "command": "MODIFY",
+    "desc": "修改 生成型AI 离线语言模型支持",
+    "enabled": true
+  },
+  {
+    "key": "SEC_FLOATING_FEATURE_LCD_SUPPORT_EXTRA_BRIGHTNESS",
+    "value": "TRUE",
+    "command": "MODIFY",
+    "desc": "修改 户外模式(额外亮度)",
+    "enabled": true
+  },
+  {
+    "key": "SEC_FLOATING_FEATURE_SYSTEM_SUPPORT_ENHANCED_CPU_RESPONSIVENESS",
+    "value": "TRUE",
+    "command": "MODIFY",
+    "desc": "修改 增强的处理性能支持",
+    "enabled": true
+  },
+  {
+    "key": "SEC_FLOATING_FEATURE_SYSTEM_SUPPORT_ENHANCED_PROCESSING",
+    "value": "TRUE",
+    "command": "MODIFY",
+    "desc": "修改 增强的处理性能支持",
+    "enabled": true
+  },
+  {
+    "key": "SEC_FLOATING_FEATURE_SYSTEM_SUPPORT_LOW_HEAT_MODE",
+    "value": "TRUE",
+    "command": "MODIFY",
+    "desc": "修改 低温模式支持",
+    "enabled": true
+  },
+  {
+    "key": "SEC_FLOATING_FEATURE_COMMON_SUPPORT_SAMSUNG_MARKETING_INFO",
+    "value": "FALSE",
+    "command": "MODIFY",
+    "desc": "修改 关闭三星广告营销信息",
+    "enabled": true
+  },
+  {
+    "key": "SEC_FLOATING_FEATURE_GRAPHICS_SUPPORT_TOUCH_FAST_RESPONSE",
+    "value": "TRUE",
+    "command": "MODIFY",
+    "desc": "修改 高触控采样率支持",
+    "enabled": true
+  },
+  {
+    "key": "SEC_FLOATING_FEATURE_FRAMEWORK_SUPPORT_PERSONALIZED_DATA_CORE",
+    "value": "TRUE",
+    "command": "MODIFY",
+    "desc": "修改 即时简报支持",
+    "enabled": true
+  },
+  {
+    "key": "SEC_FLOATING_FEATURE_WLAN_SUPPORT_SECURE_WIFI",
+    "value": "FALSE",
+    "command": "MODIFY",
+    "desc": "修改 关闭安全Wi-Fi",
+    "enabled": true
+  },
+  {
+    "key": "SEC_FLOATING_FEATURE_WIFI_SUPPORT_ADPS",
+    "value": "TRUE",
+    "command": "MODIFY",
+    "desc": "修改 Wi-Fi 适配节电支持(ADPS)",
+    "enabled": true
+  },
+  {
+    "key": "SEC_FLOATING_FEATURE_LCD_CONFIG_AOD_FULLSCREEN",
+    "value": "1",
+    "command": "MODIFY",
+    "desc": "修改 全屏AOD配置",
+    "enabled": true
+  },
+  {
+    "key": "SEC_FLOATING_FEATURE_COMMON_CONFIG_DEX_MODE",
+    "value": "standalone,dual,wireless",
+    "command": "MODIFY",
+    "desc": "修改 Dex 模式支持范围",
+    "enabled": true
+  }
+]
