@@ -31,7 +31,7 @@ jobs:
       - name: Build csc_tool (Native)
         run: |
           cd src/core
-          ndk-build
+          ndk-build NDK_PROJECT_PATH=. NDK_APPLICATION_MK=jni/Application.mk
           mkdir -p ../../module_files/libs
           # 拷贝编译出的二进制文件到模块目录
           cp -r libs/* ../../module_files/libs/

@@ -105,9 +105,11 @@ process_feature_file() {
     # 优先挂载加密后的 final_file，如果不存在则尝试挂载 patched_file (明文)
     if [ -f "$final_file" ]; then
         safe_mount "$final_file" "$origin_path"
+        restorecon "$origin_path"
     else
         log "注意: 加密失败，尝试挂载明文文件"
         safe_mount "$patched_file" "$origin_path"
+        restorecon "$origin_path"
     fi
 }
 
