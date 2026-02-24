@@ -1,12 +1,23 @@
-ui_print "------------------------"
-ui_print "安装后请在WebUI 选择并开启所需功能"
-ui_print "------------------------"
-ui_print "若过度修改导致无法开机" 
-ui_print "请重启进LOGO时长按音量- 键禁用所有模块"
-ui_print "暂停3秒，请知悉阅读使用说明"
-sleep 3
+# OneUI CSC Features - customize.sh
 
-set_perm_recursive $MODPATH 0 0 0777 0777
+# 处理配置文件
+CONFIG_DIR="/data/adb/csc_config"
+ui_print "- 正在初始化配置文件路径: $CONFIG_DIR"
+mkdir -p "$CONFIG_DIR"
 
-REPLACE="
-"
+for f in csc.json ff.json carrier.json; do
+  if [ ! -f "$CONFIG_DIR/$f" ]; then
+    ui_print "  释放默认配置: $f"
+    cp "$MODPATH/configs/$f" "$CONFIG_DIR/$f"
+  else
+    ui_print "  跳过已存在的配置: $f"
+  fi
+done
+
+
+ui_print "------------------------"
+ui_print "安装完成！"
+ui_print "请在 WebUI 中开启所需功能。"
+ui_print "数据存储在: $CONFIG_DIR"
+ui_print "------------------------"
+sleep 2
