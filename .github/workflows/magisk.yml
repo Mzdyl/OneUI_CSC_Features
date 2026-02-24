@@ -2,8 +2,7 @@ name: Build Magisk Module
 
 on:
   push:
-#   paths:
-#     - 'scr/**'
+    branches: [ main, master, 2.0 ]
   workflow_dispatch:
 
 jobs:
@@ -12,36 +11,35 @@ jobs:
     
     steps:
       - uses: actions/checkout@v3
-      
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
       - name: Set up NDK
         uses: nttld/setup-ndk@v1
         with:
           ndk-version: r25c
-          
-      - name: Build Native Libraries
+
+      - name: Build WebUI
         run: |
-          mkdir -p $GITHUB_WORKSPACE/module_files/libs
+          cd src/webui
+          npm install
+          npm run build
 
-          echo "Building auto_modify_cscfeature..."
-          cd $GITHUB_WORKSPACE/scr/auto_modify_cscfeature/
+      - name: Build csc_tool (Native)
+        run: |
+          cd src/core
           ndk-build
-          echo "Copying from $(pwd)/libs to $GITHUB_WORKSPACE/module_files/libs/"
-          cp -r libs/* $GITHUB_WORKSPACE/module_files/libs/
-
-          echo "Building auto_modify_json_csc..."
-          cd $GITHUB_WORKSPACE/scr/auto_modify_json_csc/
-          ndk-build
-          echo "Copying from $(pwd)/libs to $GITHUB_WORKSPACE/module_files/libs/"
-          cp -r libs/* $GITHUB_WORKSPACE/module_files/libs/
-
-          echo "Building cscdecode..."
-          cd $GITHUB_WORKSPACE/scr/cscdecode/
-          ndk-build
-          echo "Copying from $(pwd)/libs to $GITHUB_WORKSPACE/module_files/libs/"
-          cp -r libs/* $GITHUB_WORKSPACE/module_files/libs/
+          mkdir -p ../../module_files/libs
+          # 拷贝编译出的二进制文件到模块目录
+          cp -r libs/* ../../module_files/libs/
 
       - name: Create Magisk Module
         run: |
+          # 移除 .gitkeep 防止打包
+          find module_files -name ".gitkeep" -delete
           cd module_files
           zip -r9 ../auto_modify_cscfeature.zip ./*
 
