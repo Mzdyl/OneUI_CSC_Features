@@ -1,5 +1,5 @@
 #!/system/bin/sh
-# OneUI CSC Features - Refactored post-fs-data.sh (KSU OverlayFS & Incremental Update)
+# OneUI CSC Features
 
 MODDIR=${0%/*}
 LOG_FILE="$MODDIR/log.txt"
@@ -10,7 +10,7 @@ TOOL="$MODDIR/libs/$ARCH/csc_tool"
 HASH_DIR="$MODDIR/hashes"
 
 # ===== Debug 开关 =====
-DEBUG=1   # 0=关闭  1=开启
+DEBUG=0   # 0=关闭  1=开启
 
 # --- 辅助函数 ---
 
