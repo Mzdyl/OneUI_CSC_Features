@@ -1,0 +1,303 @@
+[
+  {
+    "key": "CscFeature_Calendar_EnableLocalHolidayDisplay",
+    "value": "CHINA",
+    "command": "MODIFY",
+    "desc": "修改 本地节假日显示",
+    "enabled": false
+  },
+  {
+    "key": "CscFeature_Calendar_EnableLunar",
+    "value": "TRUE",
+    "command": "MODIFY",
+    "desc": "修改 农历显示",
+    "enabled": false
+  },
+  {
+    "key": "CscFeature_Weather_ConfigCpType",
+    "value": "CMA",
+    "command": "MODIFY",
+    "desc": "修改 天气源为中国天气",
+    "enabled": false
+  },
+  {
+    "key": "CscFeature_Setting_SupportRealTimeNetworkSpeed",
+    "value": "TRUE",
+    "command": "MODIFY",
+    "desc": "修改 加入网速显示",
+    "enabled": false
+  },
+  {
+    "key": "CscFeature_SPen_ConfigDefTranslatorSolution",
+    "value": "Google",
+    "command": "MODIFY",
+    "desc": "修改 S Pen 的默认翻译方案",
+    "enabled": false
+  },
+  {
+    "key": "CscFeature_VoiceCall_ConfigRecording",
+    "value": "RecordingAllowed",
+    "command": "MODIFY",
+    "desc": "修改 加入通话录音",
+    "enabled": false
+  },
+  {
+    "key": "CscFeature_Camera_ShutterSoundMenu",
+    "value": "TRUE",
+    "command": "MODIFY",
+    "desc": "修改 加入允许相机静音(A14以上无效)",
+    "enabled": false
+  },
+  {
+    "key": "CscFeature_Contact_EnableBPMFSortList",
+    "value": "",
+    "command": "DELETE",
+    "desc": "删除 按 BPMF（注音符号）排序的联系人列表",
+    "enabled": false
+  },
+  {
+    "key": "CscFeature_Contact_EnableStrokeSortList",
+    "value": "",
+    "command": "DELETE",
+    "desc": "删除 按笔画排序的联系人列表",
+    "enabled": false
+  },
+  {
+    "key": "CscFeature_SystemUI_ConfigRecentDefaultLockList",
+    "value": "",
+    "command": "DELETE",
+    "desc": "删除 默认的最近使用应用锁定列表",
+    "enabled": false
+  },
+  {
+    "key": "CscFeature_SmartManager_ConfigSubFeatures",
+    "value": "appdatacleaner|trafficmanager_auto|fake_base_station|rootbadgefeature|badappnoti|trafficmanager|applock|paymentsafety|riskcontrol|newdataplan",
+    "command": "MODIFY",
+    "desc": "修改 智能管理器支持功能",
+    "enabled": false
+  },
+  {
+    "key": "CscFeature_Setting_EnableMenuBlockCallMsg",
+    "value": "TRUE",
+    "command": "MODIFY",
+    "desc": "修改 加入骚扰拦截",
+    "enabled": false
+  },
+  {
+    "key": "CscFeature_Contact_ConfigForYellowPage",
+    "value": "SHOW",
+    "command": "MODIFY",
+    "desc": "修改 加入黄页",
+    "enabled": false
+  },
+  {
+    "key": "CscFeature_Audio_SupportSafeMediaVolumeDialog",
+    "value": "TRUE",
+    "command": "MODIFY",
+    "desc": "修改 加入安全音量警告",
+    "enabled": false
+  },
+  {
+    "key": "CscFeature_Common_ConfigSvcProviderForUnknownNumber",
+    "value": "",
+    "command": "DELETE",
+    "desc": "删除 未知号码的服务提供商",
+    "enabled": false
+  },
+  {
+    "key": "CscFeature_RIL_CallerIdMatchingDigit",
+    "value": "11",
+    "command": "MODIFY",
+    "desc": "修改 来电显示匹配的数字(11位)",
+    "enabled": false
+  },
+  {
+    "key": "CscFeature_Calculator_ConfigConverter",
+    "value": "CHN",
+    "command": "MODIFY",
+    "desc": "修改 计算器单位使用中国单位",
+    "enabled": false
+  },
+  {
+    "key": "CscFeature_Clock_ConfigLocalTimerPreset",
+    "value": "China",
+    "command": "MODIFY",
+    "desc": "修改 本地时间的预设选项",
+    "enabled": false
+  },
+  {
+    "key": "CscFeature_Clock_EnableAutoPowerOnOffMenu",
+    "value": "TRUE",
+    "command": "MODIFY",
+    "desc": "修改 自动开关机菜单",
+    "enabled": false
+  },
+  {
+    "key": "CscFeature_Clock_SupportAlarmOptionMenuForWorkingDay",
+    "value": "TRUE",
+    "command": "MODIFY",
+    "desc": "修改 工作日闹钟",
+    "enabled": false
+  },
+  {
+    "key": "CscFeature_Contact_ConfigTelNumType",
+    "value": "CHC",
+    "command": "MODIFY",
+    "desc": "修改 电话号码的类型",
+    "enabled": false
+  },
+  {
+    "key": "CscFeature_Contact_EnableMultiplePinyinSearch",
+    "value": "TRUE",
+    "command": "MODIFY",
+    "desc": "修改 多拼音搜索",
+    "enabled": false
+  },
+  {
+    "key": "CscFeature_Contact_EnablePuzzySearch",
+    "value": "CHNGSM",
+    "command": "MODIFY",
+    "desc": "修改 模糊搜索",
+    "enabled": false
+  },
+  {
+    "key": "CscFeature_Contact_UseUniNameField",
+    "value": "TRUE",
+    "command": "MODIFY",
+    "desc": "修改 统一的联系人姓名字段",
+    "enabled": false
+  },
+  {
+    "key": "CscFeature_Message_EnableCpm",
+    "value": "TRUE",
+    "command": "MODIFY",
+    "desc": "修改 启用CPM（Content Provider Messaging）",
+    "enabled": false
+  },
+  {
+    "key": "CscFeature_Message_SupportBotThreadsMerge",
+    "value": "TRUE",
+    "command": "MODIFY",
+    "desc": "修改 合并短信聊天机器人线程",
+    "enabled": false
+  },
+  {
+    "key": "CscFeature_Message_EnablePhoneNumberFormattingInMsg",
+    "value": "TRUE",
+    "command": "MODIFY",
+    "desc": "修改 短信中对电话号码进行格式化",
+    "enabled": false
+  },
+  {
+    "key": "CscFeature_Setting_EnableHwVersionDisplay",
+    "value": "TRUE",
+    "command": "MODIFY",
+    "desc": "修改 允许硬件版本显示",
+    "enabled": false
+  },
+  {
+    "key": "CscFeature_Setting_SupportPreInstallerShowPreloadAppList",
+    "value": "TRUE",
+    "command": "MODIFY",
+    "desc": "修改 允许显示已预装的应用程序列表",
+    "enabled": false
+  },
+  {
+    "key": "CscFeature_VoiceCall_ConfigOpStyleForImsFunction",
+    "value": "crbt_video_cmcc,unidirectional_video_ctc",
+    "command": "MODIFY",
+    "desc": "修改 IMS功能，启用视频彩铃和单向视频通话",
+    "enabled": false
+  },
+  {
+    "key": "CscFeature_VoiceCall_ConfigOpStyleForSpamCall",
+    "value": "DELAYEDRING,SMARTMANAGER",
+    "command": "MODIFY",
+    "desc": "修改 垃圾电话处理",
+    "enabled": false
+  },
+  {
+    "key": "CscFeature_VoiceCall_SupportCrtCrbtText",
+    "value": "CRBTTEXT",
+    "command": "MODIFY",
+    "desc": "修改 显示来电者的自定义彩铃信息",
+    "enabled": false
+  },
+  {
+    "key": "CscFeature_Setting_ConfigAboutDeviceItems",
+    "value": "modelnumberDSsuffix=disabled",
+    "command": "MODIFY",
+    "desc": "修改 “关于设备” 禁用显示与型号相关的后缀",
+    "enabled": false
+  },
+  {
+    "key": "CscFeature_SystemUI_SupportAssistanceAppChooser",
+    "value": "TRUE",
+    "command": "MODIFY",
+    "desc": "修改 允许用户选择默认助理程序",
+    "enabled": false
+  },
+  {
+    "key": "CscFeature_Contact_ConfigImsOpStyle",
+    "value": "CHNOPEN",
+    "command": "MODIFY",
+    "desc": "修改 图标风格",
+    "enabled": false
+  },
+  {
+    "key": "CscFeature_Contact_ConfigOpStyleVariation",
+    "value": "CHC",
+    "command": "MODIFY",
+    "desc": "修改 图标风格",
+    "enabled": false
+  },
+  {
+    "key": "CscFeature_SystemUI_ConfigOpBrandingForIndicatorIcon",
+    "value": "CHC",
+    "command": "MODIFY",
+    "desc": "修改 图标风格",
+    "enabled": false
+  },
+  {
+    "key": "CscFeature_SystemUI_ConfigQuickSettingPopup",
+    "value": "CHC",
+    "command": "MODIFY",
+    "desc": "修改 图标风格",
+    "enabled": false
+  },
+  {
+    "key": "CscFeature_DeviceSearch_AlwaysShowSipWhenSwipeLaunched",
+    "value": "TRUE",
+    "command": "MODIFY",
+    "desc": "修改 优化拨号中文搜索",
+    "enabled": false
+  },
+  {
+    "key": "CscFeature_Common_SupportGmsAlarmManager",
+    "value": "FALSE",
+    "command": "MODIFY",
+    "desc": "修改 GMS 定时唤醒(影响FCM推送延迟)",
+    "enabled": false
+  },
+  {
+    "key": "CscFeature_Common_EnableVIPMode",
+    "value": "TRUE",
+    "command": "MODIFY",
+    "desc": "修改 VIP 模式",
+    "enabled": false
+  },
+  {
+    "key": "CscFeature_SystemUI_SupportDataUsageViewOnQuickPanel",
+    "value": "TRUE",
+    "command": "MODIFY",
+    "desc": "修改 快速面板显示 数据使用情况",
+    "enabled": false
+  },
+  {
+    "key": "CscFeature_SystemUI_ConfigDefQuickSettingItem",
+    "value": "Wifi,SoundMode,Bluetooth,RotationLock,AirplaneMode,Flashlight,MobileData,TurnOn5g,Hotspot,BatteryMode,Location,WindowsLink,ScreenCapture,ScreenRecorder,ShareLive,DesktopMode,AllShareCast,BlueLightFilter,NightMode,Dnd,RedPacket,QRScanner",
+    "command": "MODIFY",
+    "desc": "修改 添加5G开关及面板布局",
+    "enabled": false
+  }
+]

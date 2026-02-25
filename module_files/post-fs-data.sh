@@ -1,78 +1,198 @@
+#!/system/bin/sh
+# OneUI CSC Features - Refactored post-fs-data.sh
+
 MODDIR=${0%/*}
-
 LOG_FILE="$MODDIR/log.txt"
-echo "日志开始: $(date)" > $LOG_FILE
-CSC="`getprop ro.boot.sales_code`"
-echo "获取销售代码: $CSC" | tee -a $LOG_FILE
-ARCH="`getprop ro.product.cpu.abi`"
-echo "获取架构类型: $ARCH" | tee -a $LOG_FILE
+CONFIG_PATH="/data/adb/csc_config"
+ARCH=$(getprop ro.product.cpu.abi)
+CSC=$(getprop ro.boot.sales_code)
+TOOL="$MODDIR/libs/$ARCH/csc_tool"
 
-# 查找配置目录并记录到日志
-CSC_DIR=$(find /optics/configs/carriers -type d -name "$CSC")
-if [ -z "$CSC_DIR" ]; then
-    echo "错误: 未找到对应的配置目录!" | tee -a $LOG_FILE
+# ===== Debug 开关 =====
+DEBUG=0   # 0=关闭  1=开启
+
+# --- 辅助函数 ---
+
+# 统一日志输出
+log() {
+    echo "[$(date '+%H:%M:%S')] $1" >> "$LOG_FILE"
+    echo "$1" >&2
+}
+
+# Debug 日志
+debug() {
+    [ "$DEBUG" = "1" ] && log "[DEBUG] $1"
+}
+
+# 每次启动重新生成日志
+prepare_log() {
+    : > "$LOG_FILE"
+    log "=== 模块启动: CSC=$CSC, ARCH=$ARCH, DEBUG=$DEBUG ==="
+}
+
+# 动态寻找文件路径
+find_file() {
+    local filename=$1
+    local base="/optics/configs/carriers/$CSC"
+
+    debug "查找文件: $filename (base=$base)"
+
+    local path=$(find "$base" -name "$filename" 2>/dev/null | head -n 1)
+
+    if [ -f "$path" ]; then
+        debug "找到文件: $path"
+        echo "$path"
+        return 0
+    fi
+
+    debug "未找到文件: $filename"
+    return 1
+}
+
+# 安全挂载函数
+safe_mount() {
+    local src=$1
+    local target=$2
+
+    debug "准备挂载: $src -> $target"
+
+    if [ ! -f "$src" ] || [ ! -f "$target" ]; then
+        log "错误: 挂载源或目标不存在 ($src -> $target)"
+        return 1
+    fi
+    
+    umount -l "$target" >/dev/null 2>&1
+    mount --bind "$src" "$target"
+
+    local ret=$?
+
+    if [ $ret -eq 0 ]; then
+        log "成功挂载: $target"
+        debug "mount 返回值: $ret"
+        return 0
+    else
+        log "失败: 无法挂载 $target"
+        debug "mount 返回值: $ret"
+        return 1
+    fi
+}
+
+# 处理单个文件逻辑
+process_feature_file() {
+    local label=$1
+    local filename=$2
+    local config_name=$3
+    
+    log "正在处理 $label ($filename)..."
+    
+    # 1. 寻找原始文件
+    local origin_path
+    origin_path=$(find_file "$filename")
+    
+    local decoded_file="$MODDIR/decoded_$label"
+    local patched_file="$MODDIR/patched_$label"
+    local final_file="$MODDIR/final_$label"
+    
+    if [ -z "$origin_path" ]; then
+        if [ "$label" = "ff" ] && [ -f "/etc/floating_feature.xml" ]; then
+            origin_path="/etc/floating_feature.xml"
+            debug "使用 fallback floating_feature: $origin_path"
+        else
+            log "跳过: 未找到原始文件 $filename"
+            return
+        fi
+    fi
+    
+    debug "origin_path=$origin_path"
+    
+    # ========================
+    # floating_feature 特殊逻辑
+    # ========================
+    if [ "$label" = "ff" ]; then
+        
+        debug "floating_feature 走明文模式"
+        
+        cp "$origin_path" "$decoded_file"
+        
+        local user_config="$CONFIG_PATH/$config_name"
+        
+        if [ -f "$user_config" ]; then
+            debug "执行 patch (ff)"
+            $TOOL --patch "$decoded_file" "$user_config" "$patched_file" >> "$LOG_FILE" 2>&1
+        else
+            log "注意: 未找到用户配置 $config_name，将保持原始状态"
+            cp "$decoded_file" "$patched_file"
+        fi
+        
+        if [ -f "$patched_file" ]; then
+            debug "挂载明文 floating_feature"
+            safe_mount "$patched_file" "$origin_path"
+            restorecon "$origin_path"
+        else
+            log "错误: patch 失败 ($label)"
+        fi
+        
+        return
+    fi
+    
+    # ========================
+    # 其它文件（加密流程）
+    # ========================
+    
+    # 2. 解码
+    debug "执行 decode: $TOOL --decode $origin_path $decoded_file"
+    
+    $TOOL --decode "$origin_path" "$decoded_file" >> "$LOG_FILE" 2>&1
+    
+    if [ ! -f "$decoded_file" ]; then
+        log "错误: decode 失败 ($label)"
+        return
+    fi
+    
+    # 3. Patch
+    local user_config="$CONFIG_PATH/$config_name"
+    
+    debug "user_config=$user_config"
+    
+    if [ -f "$user_config" ]; then
+        debug "执行 patch"
+        $TOOL --patch "$decoded_file" "$user_config" "$patched_file" >> "$LOG_FILE" 2>&1
+    else
+        log "注意: 未找到用户配置 $config_name，将保持原始状态"
+        cp "$decoded_file" "$patched_file"
+    fi
+    
+    # 4. Encode
+    debug "执行 encode"
+    $TOOL --encode "$patched_file" "$final_file" >> "$LOG_FILE" 2>&1
+    
+    # 5. 挂载
+    if [ -f "$final_file" ]; then
+        debug "使用加密文件挂载"
+        safe_mount "$final_file" "$origin_path"
+        restorecon "$origin_path"
+    else
+        log "注意: 加密失败，尝试挂载明文文件"
+        safe_mount "$patched_file" "$origin_path"
+        restorecon "$origin_path"
+    fi
+}
+
+# --- 主流程 ---
+
+prepare_log
+
+debug "MODDIR=$MODDIR"
+debug "CONFIG_PATH=$CONFIG_PATH"
+debug "TOOL=$TOOL"
+
+if [ ! -f "$TOOL" ]; then
+    log "致命错误: 未在 $TOOL 找到核心工具"
     exit 1
-else
-    echo "找到的配置目录: $CSC_DIR" | tee -a $LOG_FILE
 fi
 
-# 配置文件路径并记录到日志
-CONFIG_FILE="$CSC_DIR/conf/system/cscfeature.xml"
-CARRIER_CONFIG_FILE="$CSC_DIR/conf/system/customer_carrier_feature.json"
-if [ ! -f "$CONFIG_FILE" ]; then
-    echo "错误: 配置文件 $CONFIG_FILE 不存在!" | tee -a $LOG_FILE
-    exit 1
-else
-    echo "配置文件路径: $CONFIG_FILE" | tee -a $LOG_FILE
-fi
+process_feature_file "csc" "cscfeature.xml" "csc.json"
+process_feature_file "carrier" "customer_carrier_feature.json" "carrier.json"
+process_feature_file "ff" "floating_feature.xml" "ff.json"
 
-# 开始解码 CSC 文件并记录输出
-echo "开始解码文件..." | tee -a $LOG_FILE
-$MODDIR/libs/$ARCH/decode_csc decode $CONFIG_FILE $MODDIR/decode_csc.xml >> $LOG_FILE 2>&1
-$MODDIR/libs/$ARCH/decode_csc decode $CARRIER_CONFIG_FILE $MODDIR/decode_carrier.json >> $LOG_FILE 2>&1
-
-echo "开始复制 floating_feature.xml 文件..." | tee -a $LOG_FILE
-cp /etc/floating_feature.xml $MODDIR/ff.xml
-
-# 开始自动修改 CSC 特性文件并记录输出
-echo "开始自动修改 CSC 特性文件..." | tee -a $LOG_FILE
-$MODDIR/libs/$ARCH/auto_modify_cscfeature $MODDIR/decode_csc.xml $MODDIR/ml_csc.txt >> $LOG_FILE 2>&1
-
-echo "开始自动修改 floating 特性文件..." | tee -a $LOG_FILE
-$MODDIR/libs/$ARCH/auto_modify_cscfeature $MODDIR/ff.xml $MODDIR/ml_ff.txt SecFloatingFeatureSet >> $LOG_FILE 2>&1
-
-echo "开始自动修改 运营商 特性文件..." | tee -a $LOG_FILE
-$MODDIR/libs/$ARCH/auto_modify_jsoncsc $MODDIR/decode_carrier.json $MODDIR/ml_carrier.txt >> $LOG_FILE 2>&1
-
-# 挂载 CSC 文件并记录输出
-echo "开始挂载 CSC 文件..." | tee -a $LOG_FILE
-$MODDIR/libs/$ARCH/decode_csc encode $MODDIR/decode_csc.xml $MODDIR/csc.xml >> $LOG_FILE 2>&1
-mount --bind $MODDIR/csc.xml $CONFIG_FILE >> $LOG_FILE 2>&1
-if [ $? -eq 0 ]; then
-    echo "挂载成功: $MODDIR/csc.xml 到 $CONFIG_FILE" | tee -a $LOG_FILE
-else
-    echo "挂载失败" | tee -a $LOG_FILE
-    exit 1
-fi
-
-echo "开始挂载 运营商 文件..." | tee -a $LOG_FILE
-$MODDIR/libs/$ARCH/decode_csc encode $MODDIR/decode_carrier.json $MODDIR/carrier.json>> $LOG_FILE 2>&1
-mount --bind $MODDIR/carrier.json $CARRIER_CONFIG_FILE >> $LOG_FILE 2>&1
-if [ $? -eq 0 ]; then
-    echo "挂载成功: $MODDIR/carrier.json 到 $CARRIER_CONFIG_FILE" | tee -a $LOG_FILE
-else
-    echo "挂载失败" | tee -a $LOG_FILE
-    exit 1
-fi
-
-echo "开始挂载 floating 文件..." | tee -a $LOG_FILE
-mount --bind $MODDIR/ff.xml /etc/floating_feature.xml >> $LOG_FILE 2>&1
-if [ $? -eq 0 ]; then
-    echo "挂载成功: $MODDIR/ff.xml 到 /etc/floating_feature.xml" | tee -a $LOG_FILE
-else
-    echo "挂载失败" | tee -a $LOG_FILE
-    exit 1
-fi
-
-# 记录脚本结束
-echo "脚本执行结束: $(date)" | tee -a $LOG_FILE
+log "=== 处理完成 ==="

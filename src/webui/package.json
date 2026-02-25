@@ -5,7 +5,7 @@
   "source": "src/index.html",
   "scripts": {
     "start": "parcel src/index.html",
-    "build": "parcel build src/index.html --dist-dir ../module_files/webroot --public-url ./"
+    "build": "parcel build src/index.html --dist-dir ../../module_files/webroot --public-url ./"
   },
   "keywords": [],
   "author": "",
