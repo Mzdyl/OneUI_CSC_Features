@@ -16,7 +16,7 @@ DEBUG=0   # 0=关闭  1=开启
 # 统一日志输出
 log() {
     echo "[$(date '+%H:%M:%S')] $1" >> "$LOG_FILE"
-    echo "$1"
+    echo "$1" >&2
 }
 
 # Debug 日志
@@ -82,38 +82,78 @@ process_feature_file() {
     local label=$1
     local filename=$2
     local config_name=$3
-
+    
     log "正在处理 $label ($filename)..."
-
+    
     # 1. 寻找原始文件
-    local origin_path=$(find_file "$filename")
+    local origin_path
+    origin_path=$(find_file "$filename")
+    
     local decoded_file="$MODDIR/decoded_$label"
-
+    local patched_file="$MODDIR/patched_$label"
+    local final_file="$MODDIR/final_$label"
+    
     if [ -z "$origin_path" ]; then
         if [ "$label" = "ff" ] && [ -f "/etc/floating_feature.xml" ]; then
             origin_path="/etc/floating_feature.xml"
             debug "使用 fallback floating_feature: $origin_path"
-            cp "$origin_path" "$decoded_file"
         else
             log "跳过: 未找到原始文件 $filename"
             return
         fi
     fi
-
+    
     debug "origin_path=$origin_path"
-
+    
+    # ========================
+    # floating_feature 特殊逻辑
+    # ========================
+    if [ "$label" = "ff" ]; then
+        
+        debug "floating_feature 走明文模式"
+        
+        cp "$origin_path" "$decoded_file"
+        
+        local user_config="$CONFIG_PATH/$config_name"
+        
+        if [ -f "$user_config" ]; then
+            debug "执行 patch (ff)"
+            $TOOL --patch "$decoded_file" "$user_config" "$patched_file" >> "$LOG_FILE" 2>&1
+        else
+            log "注意: 未找到用户配置 $config_name，将保持原始状态"
+            cp "$decoded_file" "$patched_file"
+        fi
+        
+        if [ -f "$patched_file" ]; then
+            debug "挂载明文 floating_feature"
+            safe_mount "$patched_file" "$origin_path"
+            restorecon "$origin_path"
+        else
+            log "错误: patch 失败 ($label)"
+        fi
+        
+        return
+    fi
+    
+    # ========================
+    # 其它文件（加密流程）
+    # ========================
+    
     # 2. 解码
-
     debug "执行 decode: $TOOL --decode $origin_path $decoded_file"
-
+    
     $TOOL --decode "$origin_path" "$decoded_file" >> "$LOG_FILE" 2>&1
-
+    
+    if [ ! -f "$decoded_file" ]; then
+        log "错误: decode 失败 ($label)"
+        return
+    fi
+    
     # 3. Patch
     local user_config="$CONFIG_PATH/$config_name"
-    local patched_file="$MODDIR/patched_$label"
-
+    
     debug "user_config=$user_config"
-
+    
     if [ -f "$user_config" ]; then
         debug "执行 patch"
         $TOOL --patch "$decoded_file" "$user_config" "$patched_file" >> "$LOG_FILE" 2>&1
@@ -121,13 +161,11 @@ process_feature_file() {
         log "注意: 未找到用户配置 $config_name，将保持原始状态"
         cp "$decoded_file" "$patched_file"
     fi
-
+    
     # 4. Encode
-    local final_file="$MODDIR/final_$label"
-
     debug "执行 encode"
     $TOOL --encode "$patched_file" "$final_file" >> "$LOG_FILE" 2>&1
-
+    
     # 5. 挂载
     if [ -f "$final_file" ]; then
         debug "使用加密文件挂载"
@@ -135,7 +173,6 @@ process_feature_file() {
         restorecon "$origin_path"
     else
         log "注意: 加密失败，尝试挂载明文文件"
-        debug "使用明文挂载"
         safe_mount "$patched_file" "$origin_path"
         restorecon "$origin_path"
     fi
