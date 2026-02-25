@@ -19,7 +19,7 @@ for f in csc.json ff.json carrier.json; do
 done
 
 # 权限修正
-set_perm_recursive "$CONFIG_DIR" 0 0 0777 0777
+set_perm_recursive "$CONFIG_DIR" 0 0 0755 0755
 
 ui_print "------------------------"
 ui_print "安装完成！"

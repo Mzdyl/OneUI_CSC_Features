@@ -188,6 +188,7 @@ debug "TOOL=$TOOL"
 
 if [ ! -f "$TOOL" ]; then
     log "致命错误: 未在 $TOOL 找到核心工具"
+    exit 1
 fi
 
 process_feature_file "csc" "cscfeature.xml" "csc.json"
