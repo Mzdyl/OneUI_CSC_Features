@@ -12,7 +12,7 @@ mkdir -p "$CONFIG_DIR"
 for f in csc.json ff.json carrier.json; do
   if [ ! -f "$CONFIG_DIR/$f" ]; then
     ui_print "  释放默认配置: $f"
-    cp "$MODPATH/configs/$f" "$CONFIG_DIR/$f"
+    mv "$MODPATH/configs/$f" "$CONFIG_DIR/$f"
   else
     ui_print "  跳过已存在的配置: $f"
   fi
