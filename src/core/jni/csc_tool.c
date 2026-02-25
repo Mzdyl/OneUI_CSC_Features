@@ -99,16 +99,56 @@ int decompress_gz(const unsigned char* src, size_t src_len, const char* out_path
 int compress_gz(const unsigned char* src, size_t src_len, unsigned char** out, size_t* out_len) {
     DEBUG_LOG("Starting zlib compression (input size: %zu)...", src_len);
     z_stream strm = {0};
-    if (deflateInit2(&strm, Z_DEFAULT_COMPRESSION, Z_DEFLATED, 31, 8, Z_DEFAULT_STRATEGY) != Z_OK) return -1;
+    int ret;
+
+    if (deflateInit2(&strm, Z_DEFAULT_COMPRESSION, Z_DEFLATED, 31, 8, Z_DEFAULT_STRATEGY) != Z_OK) {
+        DEBUG_LOG("deflateInit2 failed.");
+        return -1;
+    }
+
     size_t bound = deflateBound(&strm, src_len) + 100;
     *out = malloc(bound);
-    if (!*out) { deflateEnd(&strm); return -1; }
-    
-    strm.next_in = (Bytef*)src; strm.avail_in = src_len;
-    strm.next_out = *out; strm.avail_out = bound;
-    deflate(&strm, Z_FINISH);
+    if (!*out) {
+        DEBUG_LOG("Failed to allocate %zu bytes for compression buffer.", bound);
+        deflateEnd(&strm);
+        return -1;
+    }
+
+    strm.next_in  = (Bytef*)src;
+    strm.avail_in = (uInt)src_len;
+    strm.next_out = *out;
+    strm.avail_out = (uInt)bound;
+
+    do {
+        ret = deflate(&strm, Z_FINISH);
+        if (ret == Z_STREAM_ERROR) {
+            DEBUG_LOG("deflate encountered Z_STREAM_ERROR.");
+            deflateEnd(&strm);
+            free(*out);
+            *out = NULL;
+            return -1;
+        }
+        /* With deflateBound() the buffer should be large enough, so
+         * repeatedly returning Z_OK with no progress would be unexpected. */
+        if (ret == Z_OK && strm.avail_out == 0) {
+            DEBUG_LOG("deflate buffer exhausted before reaching Z_STREAM_END.");
+            deflateEnd(&strm);
+            free(*out);
+            *out = NULL;
+            return -1;
+        }
+    } while (ret == Z_OK);
+
+    if (ret != Z_STREAM_END) {
+        DEBUG_LOG("deflate did not reach Z_STREAM_END (ret=%d).", ret);
+        deflateEnd(&strm);
+        free(*out);
+        *out = NULL;
+        return -1;
+    }
+
     *out_len = bound - strm.avail_out;
-    deflateEnd(&strm); 
+    deflateEnd(&strm);
     DEBUG_LOG("Compression successful (output size: %zu).", *out_len);
     return 0;
 }
