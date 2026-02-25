@@ -3,12 +3,3 @@ settings put system aiprel_switch_status 1
 
 # 理论上来说开启了这个可以开启 lab 菜单，本来以为可以一次性秒杀 应用程序状态恢复 和 智能启动应用程序
 # 结果 应用程序状态恢复 还受其他影响，一路反编译到，弄到 iaft 后弄不动了，等个大神搞吧（（
-
-
-until [ -f /optics/configs/carriers ]; do
-	sleep 2
-done
-
-sleep 3
-
-sh $MODDIR/post-fs-data.sh
