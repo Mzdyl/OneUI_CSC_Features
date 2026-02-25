@@ -187,11 +187,11 @@ process_feature_file() {
     # 5. 部署挂载
     if [ -f "$final_file" ]; then
         debug "部署加密文件以供挂载"
-        deploy_for_mount "$final_file" "$origin_path"
+        deploy_for_mount "$final_file" "/system$origin_path"
         echo "$current_hash" > "$hash_file" # 记录 Hash
     else
         log "注意: 加密失败，尝试部署明文文件"
-        deploy_for_mount "$patched_file" "$origin_path"
+        deploy_for_mount "$patched_file" "/system$origin_path"
         # 即使失败使用明文，依然保存Hash，避免每次重启重复失败操作
         echo "$current_hash" > "$hash_file" 
     fi
