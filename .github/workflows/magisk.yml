@@ -1,16 +1,33 @@
-name: Build Magisk Module
+name: Build and Release Magisk Module
 
 on:
   push:
-    branches: [ main, master, 2.0 ]
+    branches: [ main, master ]
   workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     
     steps:
       - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Check for version in commit message
+        id: get_version
+        run: |
+          COMMIT_MSG="${{ github.event.head_commit.message }}"
+          VERSION=$(echo "$COMMIT_MSG" | grep -oE 'v[0-9]+(\.[0-9]+)*' | head -1)
+          if [ ! -z "$VERSION" ]; then
+            echo "version=${VERSION}" >> $GITHUB_OUTPUT
+            echo "has_version=true" >> $GITHUB_OUTPUT
+            echo "raw_version=${VERSION#v}" >> $GITHUB_OUTPUT
+          else
+            echo "has_version=false" >> $GITHUB_OUTPUT
+          fi
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
@@ -21,6 +38,29 @@ jobs:
         uses: nttld/setup-ndk@v1
         with:
           ndk-version: r25c
+
+      - name: Auto Update Version Files
+        if: steps.get_version.outputs.has_version == 'true'
+        run: |
+          NEW_VER="${{ steps.get_version.outputs.raw_version }}"
+          PROP_FILE="module_files/module.prop"
+          JSON_FILE="update.json"
+          OLD_VCODE=$(grep 'versionCode=' $PROP_FILE | cut -d= -f2)
+          NEW_VCODE=$((OLD_VCODE + 1))
+          sed -i "s/version=.*/version=$NEW_VER/" $PROP_FILE
+          sed -i "s/versionCode=.*/versionCode=$NEW_VCODE/" $PROP_FILE
+          sed -i "s/\"version\": \".*\"/\"version\": \"$NEW_VER\"/" $JSON_FILE
+          sed -i "s/\"versionCode\": [0-9]*/\"versionCode\": $NEW_VCODE/" $JSON_FILE
+          echo "NEW_VCODE=$NEW_VCODE" >> $GITHUB_ENV
+
+      - name: Commit Version Update
+        if: steps.get_version.outputs.has_version == 'true'
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add module_files/module.prop update.json
+          git commit -m "Auto update version to ${{ steps.get_version.outputs.version }} [skip ci]"
+          git push origin ${{ github.ref_name }}
 
       - name: Build WebUI
         run: |
@@ -33,18 +73,31 @@ jobs:
           cd src/core
           ndk-build NDK_PROJECT_PATH=. NDK_APPLICATION_MK=jni/Application.mk
           mkdir -p ../../module_files/libs
-          # 拷贝编译出的二进制文件到模块目录
           cp -r libs/* ../../module_files/libs/
 
       - name: Create Magisk Module
         run: |
-          # 移除 .gitkeep 防止打包
           find module_files -name ".gitkeep" -delete
           cd module_files
-          zip -r9 ../auto_modify_cscfeature.zip ./*
+          zip -rq ../auto_modify_cscfeature.zip .
+          cd ..
 
-      - name: Upload Artifact
+      - name: Create GitHub Release
+        if: steps.get_version.outputs.has_version == 'true'
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ steps.get_version.outputs.version }}
+          name: Release ${{ steps.get_version.outputs.version }}
+          body: |
+            ## OneUI CSC Features ${{ steps.get_version.outputs.version }}
+            - 自动构建版本: ${{ env.NEW_VCODE }}
+            - 提交信息: ${{ github.event.head_commit.message }}
+          files: auto_modify_cscfeature.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload Artifact (Zip)
         uses: actions/upload-artifact@v4
         with:
-          name: auto_modify_cscfeature
+          name: auto_modify_cscfeature_module
           path: auto_modify_cscfeature.zip
