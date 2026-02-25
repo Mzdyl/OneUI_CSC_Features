@@ -33,7 +33,8 @@ prepare_log() {
 # 动态寻找原始文件路径
 find_file() {
     local filename=$1
-    local base="/optics/configs/carriers/$CSC"
+    local carriers="/optics/configs/carriers"
+    local base=$(find "$carriers" -type d -name "$CSC" 2>/dev/null | head -n 1)
     debug "查找文件: $filename (base=$base)"
     local path=$(find "$base" -name "$filename" 2>/dev/null | head -n 1)
 
