@@ -367,9 +367,64 @@ void patch_xml(const char* xml_p, const char* cfg_p, const char* dst) {
             char *line = xc;
             char *file_end = xc + xs;
             
+            // 第一步：找出所有需要新增的key
+            int new_count = 0;
+            for (int i = 0; i < n; i++) {
+                if (strcmp(list[i].key, "ZZZ_DEL") != 0) {
+                    // 检查是否在原文件中存在
+                    int found_in_original = 0;
+                    char *search = xc;
+                    while ((search = strstr(search, list[i].key)) != NULL && search < e) {
+                        if (search > xc && *(search-1) == '"' && strstr(search-6, "name=\"")) {
+                            found_in_original = 1;
+                            break;
+                        }
+                        if (strstr(search, "name=\"") && strncmp(search, list[i].key, strlen(list[i].key)) == 0) {
+                            found_in_original = 1;
+                            break;
+                        }
+                        search++;
+                    }
+                    if (!found_in_original) new_count++;
+                }
+            }
+            
+            // 第二步：逐行处理
             while (line < file_end) {
                 char *newline = strchr(line, '\n');
                 int line_len = newline ? (newline - line + 1) : (file_end - line);
+                
+                // 检查是否是 </resources> 或 </local> 结束标签
+                int is_closing_resources = 0;
+                char *trimmed = line;
+                while (*trimmed == ' ' || *trimmed == '\t') trimmed++;
+                if (strncmp(trimmed, "</resources>", 12) == 0 || strncmp(trimmed, "</local>", 8) == 0) {
+                    is_closing_resources = 1;
+                }
+                
+                // 如果是结束标签且还有新增项，先插入新增项
+                if (is_closing_resources && new_count > 0) {
+                    fprintf(f, "\n    <!-- Added by CSC Features Module -->\n");
+                    for (int i = 0; i < n; i++) {
+                        if (strcmp(list[i].key, "ZZZ_DEL") != 0) {
+                            // 检查是否是新增的
+                            int found_in_original = 0;
+                            char *search = xc;
+                            while ((search = strstr(search, list[i].key)) != NULL && search < e) {
+                                if (search > xc && *(search-1) == '"' && strstr(search-6, "name=\"")) {
+                                    found_in_original = 1;
+                                    break;
+                                }
+                                search++;
+                            }
+                            
+                            if (!found_in_original) {
+                                fprintf(f, "    <local name=\"%s\" value=\"%s\"/>\n", list[i].key, list[i].value);
+                            }
+                        }
+                    }
+                    new_count = 0; // 标记已插入
+                }
                 
                 // 检查是否包含 <local 和 name="
                 char *local_tag = strstr(line, "<local");
@@ -424,31 +479,26 @@ void patch_xml(const char* xml_p, const char* cfg_p, const char* dst) {
                 line += line_len;
             }
             
-            // 追加新增的项
-            int added = 0;
-            for (int i = 0; i < n; i++) {
-                // 检查是否是新增的（原始文件中不存在的key）
-                int found_in_original = 0;
-                char *orig = xc;
-                while ((orig = strstr(orig, list[i].key)) != NULL && orig < e) {
-                    if (strstr(orig - 10, "name=\"") || strstr(orig, "name=\"")) {
-                        found_in_original = 1;
-                        break;
+            // 如果文件没有结束标签（异常情况），追加到末尾
+            if (new_count > 0) {
+                fprintf(f, "\n    <!-- Added by CSC Features Module -->\n");
+                for (int i = 0; i < n; i++) {
+                    if (strcmp(list[i].key, "ZZZ_DEL") != 0) {
+                        int found_in_original = 0;
+                        char *search = xc;
+                        while ((search = strstr(search, list[i].key)) != NULL && search < e) {
+                            if (search > xc && *(search-1) == '"' && strstr(search-6, "name=\"")) {
+                                found_in_original = 1;
+                                break;
+                            }
+                            search++;
+                        }
+                        
+                        if (!found_in_original) {
+                            fprintf(f, "    <local name=\"%s\" value=\"%s\"/>\n", list[i].key, list[i].value);
+                        }
                     }
-                    orig++;
                 }
-                
-                if (!found_in_original && strcmp(list[i].key, "ZZZ_DEL") != 0) {
-                    if (added == 0) {
-                        fprintf(f, "\n    <!-- Added by CSC Features Module -->\n");
-                    }
-                    fprintf(f, "    <local name=\"%s\" value=\"%s\"/>\n", list[i].key, list[i].value);
-                    added++;
-                }
-            }
-            
-            if (added > 0) {
-                DEBUG_LOG("Added %d new features to camera-feature.xml", added);
             }
         } else {
             // 传统格式：重新生成 FeatureSet 块
