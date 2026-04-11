@@ -1,7 +1,7 @@
 id=auto_modify_cscfeature
 name=Auto Modify CSC Feature
-version=2.2
-versionCode=6
+version=2.2.2
+versionCode=7
 author=Mzdyl
 description=Modify cscfeature.xml,customer_carrier_feature.json,floating_feature.xml at boot
 updateJson=https://raw.githubusercontent.com/Mzdyl/OneUI_CSC_Features/main/update.json
