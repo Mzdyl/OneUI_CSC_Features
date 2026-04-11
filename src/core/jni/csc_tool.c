@@ -191,67 +191,133 @@ void patch_xml(const char* xml_p, const char* cfg_p, const char* dst) {
     if (!xc || !jc) { free(xc); free(jc); return; }
 
     cJSON *cfg = cJSON_Parse(jc);
-    if (!cfg) { 
+    if (!cfg) {
         DEBUG_LOG("Error: Failed to parse Config JSON %s", cfg_p);
-        free(xc); free(jc); return; 
+        free(xc); free(jc); return;
     }
 
-    char *s = strstr(xc, "<FeatureSet>");
-    char *e = NULL, *tag = "FeatureSet";
-    if (!s) { 
-        s = strstr(xc, "<SecFloatingFeatureSet>"); 
-        tag = "SecFloatingFeatureSet"; 
+    // --- 检测 XML 格式类型 ---
+    int is_camera_format = 0;
+    if (strstr(xc, "<local ") != NULL || strstr(xc, "<local\n") != NULL) {
+        is_camera_format = 1;
+        DEBUG_LOG("Detected camera-feature.xml format (<local> tags)");
     }
-    
-    if (s) { 
-        s += strlen(tag) + 2; 
-        char end_tag[64];
-        snprintf(end_tag, sizeof(end_tag), "</%s>", tag);
-        e = strstr(s, end_tag); 
-        DEBUG_LOG("Detected XML Block: <%s>", tag);
+
+    char *s = NULL, *e = NULL;
+    char *tag = NULL;
+
+    if (!is_camera_format) {
+        // 传统格式：FeatureSet 或 SecFloatingFeatureSet
+        s = strstr(xc, "<FeatureSet>");
+        tag = "FeatureSet";
+        if (!s) {
+            s = strstr(xc, "<SecFloatingFeatureSet>");
+            tag = "SecFloatingFeatureSet";
+        }
+        if (s) {
+            s += strlen(tag) + 2;
+            char end_tag[64];
+            snprintf(end_tag, sizeof(end_tag), "</%s>", tag);
+            e = strstr(s, end_tag);
+            DEBUG_LOG("Detected XML Block: <%s>", tag);
+        }
+    } else {
+        // camera-feature.xml 格式：整个文件都是 <local> 标签
+        s = xc;
+        e = xc + xs;
+        DEBUG_LOG("Detected camera-feature.xml format");
     }
-    
-    if (!s || !e) { 
+
+    if (!s || !e) {
         DEBUG_LOG("Error: Could not find valid FeatureSet block in %s", xml_p);
-        cJSON_Delete(cfg); free(xc); free(jc); return; 
+        cJSON_Delete(cfg); free(xc); free(jc); return;
     }
 
-    Feature *list = malloc(sizeof(Feature) * MAX_FEATURES); 
+    Feature *list = malloc(sizeof(Feature) * MAX_FEATURES);
     if (!list) { cJSON_Delete(cfg); free(xc); free(jc); return; }
-    
+
     int n = 0;
     char *p = s;
-    while (p < e && n < MAX_FEATURES) {
-        p = strstr(p, "<"); 
-        
-        if (!p || p >= e) break;
-        if (p[1] == '/' || p[1] == '!' || p[1] == '?') { 
-            p++; continue; 
-        }
 
-        char *te = strchr(p, '>'); if (!te || te >= e) break;
-        
-        int kl = te - p - 1; 
-        if (kl <= 0 || kl > 200) { p = te + 1; continue; }
+    if (is_camera_format) {
+        // 解析 camera-feature.xml 格式: <local name="KEY" value="VALUE" .../>
+        while (p < e && n < MAX_FEATURES) {
+            p = strstr(p, "<local");
+            if (!p || p >= e) break;
 
-        char *k = malloc(kl + 1); strncpy(k, p + 1, kl); k[kl] = 0;
-        
-        char st[256], et[256]; 
-        snprintf(st, sizeof(st), "<%s>", k); 
-        snprintf(et, sizeof(et), "</%s>", k);
-        
-        char *vs = strstr(p, st); 
-        if (vs) {
-            vs += strlen(st); char *ve = strstr(vs, et);
-            if (ve && ve < e) {
-                int vl = ve - vs; char *v = malloc(vl + 1); strncpy(v, vs, vl); v[vl] = 0;
-                list[n].key = k; list[n].value = v; n++; 
-                p = ve + strlen(et); 
+            // 查找 name 属性
+            char *name_start = strstr(p, "name=\"");
+            if (!name_start || name_start >= e) { p++; continue; }
+            name_start += 6;
+
+            char *name_end = strchr(name_start, '"');
+            if (!name_end || name_end >= e) { p++; continue; }
+
+            int name_len = name_end - name_start;
+            char *key = malloc(name_len + 1);
+            strncpy(key, name_start, name_len);
+            key[name_len] = '\0';
+
+            // 查找 value 属性
+            char *value_start = strstr(name_end, "value=\"");
+            if (!value_start || value_start >= e) {
+                // 如果没有 value 属性，跳过这个标签
+                p = name_end;
+                free(key);
                 continue;
             }
+            value_start += 7;
+
+            char *value_end = strchr(value_start, '"');
+            if (!value_end || value_end >= e) { p++; continue; }
+
+            int value_len = value_end - value_start;
+            char *value = malloc(value_len + 1);
+            strncpy(value, value_start, value_len);
+            value[value_len] = '\0';
+
+            list[n].key = key;
+            list[n].value = value;
+            n++;
+
+            DEBUG_LOG("Parsed: [%s] -> [%s]", key, value);
+            p = value_end + 1;
         }
-        free(k); p = te + 1;
+    } else {
+        // 传统格式解析：<Key>value</Key>
+        while (p < e && n < MAX_FEATURES) {
+            p = strstr(p, "<");
+
+            if (!p || p >= e) break;
+            if (p[1] == '/' || p[1] == '!' || p[1] == '?') {
+                p++; continue;
+            }
+
+            char *te = strchr(p, '>'); if (!te || te >= e) break;
+
+            int kl = te - p - 1;
+            if (kl <= 0 || kl > 200) { p = te + 1; continue; }
+
+            char *k = malloc(kl + 1); strncpy(k, p + 1, kl); k[kl] = 0;
+
+            char st[256], et[256];
+            snprintf(st, sizeof(st), "<%s>", k);
+            snprintf(et, sizeof(et), "</%s>", k);
+
+            char *vs = strstr(p, st);
+            if (vs) {
+                vs += strlen(st); char *ve = strstr(vs, et);
+                if (ve && ve < e) {
+                    int vl = ve - vs; char *v = malloc(vl + 1); strncpy(v, vs, vl); v[vl] = 0;
+                    list[n].key = k; list[n].value = v; n++;
+                    p = ve + strlen(et);
+                    continue;
+                }
+            }
+            free(k); p = te + 1;
+        }
     }
+
     DEBUG_LOG("Successfully extracted %d original features from XML.", n);
 
     cJSON *item;
@@ -262,40 +328,52 @@ void patch_xml(const char* xml_p, const char* cfg_p, const char* dst) {
         cJSON *key_item = cJSON_GetObjectItem(item, "key");
         cJSON *cmd_item = cJSON_GetObjectItem(item, "command");
         if (!cJSON_IsString(key_item) || !cJSON_IsString(cmd_item)) continue;
-        
+
         const char *k = key_item->valuestring;
         cJSON *val_item = cJSON_GetObjectItem(item, "value");
         const char *v = (val_item && cJSON_IsString(val_item)) ? val_item->valuestring : "";
-        
-        int i, found = -1; 
+
+        int i, found = -1;
         for (i = 0; i < n; i++) if (strcmp(list[i].key, k) == 0) { found = i; break; }
 
         if (strcmp(cmd_item->valuestring, "MODIFY") == 0) {
-            if (found >= 0) { 
+            if (found >= 0) {
                 DEBUG_LOG("MODIFY: [%s] -> [%s]", k, v);
-                free(list[found].value); 
-                list[found].value = strdup(v); 
-            } else if (n < MAX_FEATURES) { 
+                free(list[found].value);
+                list[found].value = strdup(v);
+            } else if (n < MAX_FEATURES) {
                 DEBUG_LOG("ADD:    [%s] -> [%s]", k, v);
-                list[n].key = strdup(k); list[n].value = strdup(v); n++; 
+                list[n].key = strdup(k); list[n].value = strdup(v); n++;
             }
-        } else if (found >= 0) { 
+        } else if (found >= 0) {
             DEBUG_LOG("DELETE: [%s]", k);
-            free(list[found].key); list[found].key = strdup("ZZZ_DEL"); 
+            free(list[found].key); list[found].key = strdup("ZZZ_DEL");
         }
     }
-    
+
     qsort(list, n, sizeof(Feature), cmp_feat);
-    
-    FILE *f = fopen(dst, "wb"); 
+
+    FILE *f = fopen(dst, "wb");
     if (f) {
-        fwrite(xc, 1, s - xc, f); fprintf(f, "\n");
-        for (int i = 0; i < n; i++) {
-            if (strcmp(list[i].key, "ZZZ_DEL") != 0) {
-                fprintf(f, "    <%s>%s</%s>\n", list[i].key, list[i].value, list[i].key);
+        if (is_camera_format) {
+            // 写入 camera-feature.xml 格式
+            fprintf(f, "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<features>\n");
+            for (int i = 0; i < n; i++) {
+                if (strcmp(list[i].key, "ZZZ_DEL") != 0) {
+                    fprintf(f, "    <local name=\"%s\" value=\"%s\"/>\n", list[i].key, list[i].value);
+                }
             }
+            fprintf(f, "</features>\n");
+        } else {
+            // 写入传统格式
+            fwrite(xc, 1, s - xc, f); fprintf(f, "\n");
+            for (int i = 0; i < n; i++) {
+                if (strcmp(list[i].key, "ZZZ_DEL") != 0) {
+                    fprintf(f, "    <%s>%s</%s>\n", list[i].key, list[i].value, list[i].key);
+                }
+            }
+            fprintf(f, "  "); fputs(e, f);
         }
-        fprintf(f, "  "); fputs(e, f); 
         fclose(f);
         DEBUG_LOG("XML file successfully written to: %s", dst);
     } else {

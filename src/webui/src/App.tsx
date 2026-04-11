@@ -16,6 +16,7 @@ const FILE_LIST = [
   { label: 'Carrier', name: 'carrier.json', decoded: 'decoded_carrier' },
   { label: 'CSC', name: 'csc.json', decoded: 'decoded_csc' },
   { label: 'FF', name: 'ff.json', decoded: 'decoded_ff' },
+  { label: 'Camera', name: 'camera-feature.json', decoded: 'decoded_camera' },
 ];
 
 const CONFIG_PATH = "/data/adb/csc_config/";
@@ -63,6 +64,13 @@ export const App: React.FC = () => {
           const parsed = JSON.parse(content);
           originMap = parsed.customer[0]?.feature || {};
         } catch(e) {}
+      } else if (currentFile.name.includes('camera-feature')) {
+        // 解析 camera-feature.xml 格式: <local name="KEY" value="VALUE".../>
+        const localRegex = /<local\s+name="([^"]+)"\s+value="([^"]*)"[^\/]*\/?>/g;
+        let match;
+        while ((match = localRegex.exec(content)) !== null) {
+          originMap[match[1]] = match[2];
+        }
       } else {
         const lines = content.split(/\r?\n/);
         lines.forEach(line => {

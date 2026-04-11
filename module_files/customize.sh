@@ -9,7 +9,7 @@ CONFIG_DIR="/data/adb/csc_config"
 ui_print "- 正在初始化配置文件路径: $CONFIG_DIR"
 mkdir -p "$CONFIG_DIR"
 
-for f in csc.json ff.json carrier.json; do
+for f in csc.json ff.json carrier.json camera-feature.json; do
   if [ ! -f "$CONFIG_DIR/$f" ]; then
     ui_print "  释放默认配置: $f"
     mv "$MODPATH/configs/$f" "$CONFIG_DIR/$f"

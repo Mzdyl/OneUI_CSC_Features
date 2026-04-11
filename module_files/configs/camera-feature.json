@@ -1,0 +1,1714 @@
+[
+  {
+    "key": "SUPPORT_FRAME_WATERMARK",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用边框水印功能",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_WATERMARK_FONT_SAMSUNG_SHARP_SANS",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用Samsung Sharp Sans字体水印支持",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_BODY_BEAUTY",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用人物美体功能",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_SMART_BEAUTY",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用智能美颜",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_LIVE_BEAUTY_SHAPE_CORRECTION",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用实时美颜塑形修正",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_SMART_SCAN",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用智能扫描（文档扫描）",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_SMART_SCAN_MANUAL_CROP",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用智能扫描手动裁剪",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_SMART_SCAN_EXTRACT_TEXT",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用智能扫描提取文本",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_QR_CODE_DETECTION",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用二维码检测",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_QR_CODE_DETECTION_WITH_DETAIL_ENHANCER",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用二维码检测（细节增强）",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_QR_CODE_SHARE_ACTION",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用二维码分享操作",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_MOTION_PHOTO",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用动态照片",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_MOTION_PHOTO_BEST_FACE",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用动态照片最佳面孔",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_MOTION_PHOTO_CAPTURE_MODE",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用动态照片拍摄模式",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_MOTION_PHOTO_AUTO_TRIM_MODE",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用动态照片自动裁剪模式",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_MOTION_PHOTO_VDIS",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用动态照片视频防抖",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_SINGLE_TAKE_BEAUTY",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用单次拍摄美颜",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_SINGLE_TAKE_BURST_CAPTURE",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用单次拍摄连拍",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_SINGLE_TAKE_DYNAMIC_SLOW_MO",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用单次拍摄动态慢动作",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_SINGLE_TAKE_EXTENDED_CAPTURE",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用单次拍摄延长拍摄",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_SINGLE_TAKE_HIGHLIGHT_VIDEOS",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用单次拍摄精彩视频",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_SINGLE_TAKE_MULTI_CAMERA",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用单次拍摄多摄像头",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_SINGLE_TAKE_SCENE_OPTIMIZER",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用单次拍摄场景优化器",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_SINGLE_TAKE_UHD",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用单次拍摄UHD",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_SINGLE_TAKE_VIDEO_SNAPSHOT",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用单次拍摄视频快照",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_HEIF_FORMAT",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用HEIF格式",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_DEFAULT_HEVC",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "默认使用HEVC编码",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_HEVC_HIERARCHICAL_B_ENCODING",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用HEVC分层B帧编码",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_JPEGR_PICTURE_FORMAT",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用JPEG-R图片格式",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_DETAIL_ENHANCER",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用细节增强",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_DETAIL_ENHANCER_BUTTON",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "显示细节增强按钮",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_SEAMLESS_ZOOM",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用无缝变焦",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_PORTRAIT_SEAMLESS_ZOOM",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用人像无缝变焦",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_FOOD_SEAMLESS_ZOOM",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用食物无缝变焦",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_HYPER_LAPSE_SEAMLESS_ZOOM",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用超延时无缝变焦",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_BACK_HIGH_RESOLUTION",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用后置高分辨率摄像头",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_BACK_WIDE_CAMERA",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用后置超广角摄像头",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_BACK_TELE_CAMERA",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用后置长焦摄像头",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_BACK_SECOND_TELE_CAMERA",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用后置第二长焦摄像头",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_BACK_MULTI_HIGH_RESOLUTION",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_BACK_VIDEO_BEAUTY",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用后置视频美颜",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_BACK_VIDEO_BOKEH_BEAUTY",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用后置视频虚化美颜",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_FRONT_HIGH_RESOLUTION",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用前置高分辨率摄像头",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_FRONT_HYPER_LAPSE_NIGHT",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用前置超延时夜景",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_FRONT_VIDEO_BOKEH_BEAUTY",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用前置视频虚化美颜",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_VIDEO_BOKEH_UHD",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用视频虚化UHD",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_VIDEO_BOKEH_NATURAL_BLUR",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用视频虚化自然模糊",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_VIDEO_BOKEH_LENS_TYPE_CHANGE",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用视频虚化镜头类型切换",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_VIDEO_BOKEH_VDIS",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用视频虚化防抖",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_DUAL_BOKEH_EFFECT",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用双虚化效果",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_SINGLE_BOKEH_EFFECT",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用单虚化效果",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_BOKEH_HDR_CAPTURE",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用虚化HDR拍摄",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_BOKEH_LENS_TYPE_CHANGE",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用虚化镜头类型切换",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_BOKEH_LIGHTING",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用虚化灯光效果",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_BOKEH_OBJECT_DETECTION",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用虚化对象检测",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_BOKEH_SCENE_DETECTION",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用虚化场景检测",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_BOKEH_TORCH_FLASH",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用虚化闪光灯",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_PORTRAIT_FILTER",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用人像滤镜",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_PORTRAIT_INTELLIGENT_OPTIMIZATION",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用人像智能优化",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_PORTRAIT_SELFIE_CORRECTION",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用人像自拍校正",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_PORTRAIT_CROP_ZOOM_X2",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用人像2倍裁剪变焦",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_PORTRAIT_VIDEO_MULTI_EFFECT",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用人像视频多效果",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_NIGHT_CAPTURE_STOP",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用夜景拍摄停止",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_NIGHT_CIRCLE_SCREEN_FLASH",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用夜景圈屏幕闪光",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_NIGHT_SCREEN_FLASH",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用夜景屏幕闪光",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_NIGHT_BEAUTY",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用夜景美颜",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_PHOTO_NIGHT",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用照片夜景模式",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_PHOTO_MAX_NIGHT_SHOT",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用照片最大夜景拍摄",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_POST_PROCESSING_NIGHT_SHOT",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用后处理夜景拍摄",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_POST_PROCESSING_MOTION_PHOTO",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用后处理动态照片",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_POST_PROCESSING_MAX_NIGHT_SHOT",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用后处理最大夜景拍摄",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_HDR_VIDEOS_MENU",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用HDR视频菜单",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_HDR10_LABS_TAG",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用HDR10 Labs标签",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_SUPER_STEADY_HDR10_RECORDING",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用超级防抖HDR10录制",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_LOG_VIDEO",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用Log视频",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_PRO_VIDEO_8K",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用专业视频8K录制",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_PRO_VIDEO_FOCUS_PEAKING",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用专业视频峰值对焦",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_PRO_VIDEO_AUDIO_INPUT_CONTROL",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用专业视频音频输入控制",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_PRO_VIDEO_AUDIO_BLUETOOTH_MIX_MIC",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用专业视频蓝牙混音麦克风",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_RECORDING_360_BT_MIC",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用360度蓝牙麦克风录制",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_RECORDING_MULTI_MIC_ZOOM_FOCUS",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用多麦克风变焦对焦录制",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_NEURAL_AUDIO_ZOOM",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用神经音频变焦",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_VIDEO_HIGH_BITRATE",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用视频高比特率",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_VIDEO_AUTO_FRAMING",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用视频自动构图",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_VIDEO_AUTO_FRAMING_MULTI_LENS",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用视频多镜头自动构图",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_VIDEO_AUTO_FRAMING_UHD",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用视频UHD自动构图",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_DUAL_RECORDING_IN_VIDEO_MODE",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用视频模式双录制",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_VIDEO_MODE_ZOOM_ROCKER",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用视频模式变焦摇杆",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_VIDEO_PALM_DETECTION",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用手掌检测",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_VIDEO_STABILIZATION_WITH_TRACKING_AF",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用跟踪AF视频防抖",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_VIDEO_SAVING_LENS_INFO",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用视频保存镜头信息",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_VIDEO_EMBEDDED_THUMBNAIL",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用视频嵌入缩略图",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_VIDEO_FACE_RECT_UPDATE",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用视频面部矩形更新",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_EFFECT_VIDEO_SNAPSHOT",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用效果视频快照",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_HYPER_LAPSE_NIGHT",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用超延时夜景",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_HYPER_LAPSE_NIGHT_AUTO",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用超延时夜景自动",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_HYPER_LAPSE_ASTROGRAPHY",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用超延时天文摄影",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_HYPER_LAPSE_SUPER_STEADY",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用超延时超级防抖",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_HYPER_LAPSE_UHD",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用超延时UHD",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_HYPER_LAPSE_VDIS",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用超延时VDIS防抖",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_SUPER_SLOW_MOTION_AUTO_DETECT_PREPARE",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用超级慢动作自动检测准备",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_SUPER_SLOW_MOTION_FRC_AUTO_CHANGE",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用超级慢动作FRC自动切换",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_SUPER_SLOW_MOTION_FRC_FIXED",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用超级慢动作FRC固定",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_SLOW_MOTION_AF_DURING_RECORDING",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用慢动作录制期间AF",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_BACK_WIDE_SUPER_SLOW_MOTION",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用后置超广角超级慢动作",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_SUPER_STEADY_HORIZONTAL_LOCK",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用超级防抖水平锁定",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_CAMCORDER_ANTI_SHAKE",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用摄像机防抖",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_CAMCORDER_FRONT_ANTI_SHAKE",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用前置摄像机防抖",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_DIRECTORS_VIEW_AUTO_TRACKING",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用导演视角自动跟踪",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_DIRECTORS_VIEW_PIP_SIZE_CONTROL",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用导演视角画中画大小控制",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_DIRECTORS_VIEW_SAVE_OPTION",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用导演视角保存选项",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_DIRECTORS_VIEW_VDIS",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用导演视角VDIS",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_MY_FILTER",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用我的滤镜",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_MY_FILTER_SHARE",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用我的滤镜分享",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_DOWNLOAD_FILTER",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用下载滤镜",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_FILTER_SWIPE_CHANGE_ANIMATION",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用滤镜滑动切换动画",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_AI_MY_FILTER",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用AI我的滤镜",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_AI_OBJECT_ENGINE",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用AI对象引擎",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_AI_HIGH_RESOLUTION_MEMORY_CHECK",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用AI高分辨率内存检查",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_BIXBY",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用Bixby视觉",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_VOICE_COMMAND",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用语音命令",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_OBJECT_TRACKING_AF",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用对象跟踪AF",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_MULTI_AF",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用多AF对焦",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_AUTO_FOCUS",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用自动对焦",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_FOCUS_PEAKING",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用峰值对焦",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_COMPOSITION_GUIDE",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用构图指南",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_CUSTOM_FILTER_GUIDE",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用自定义滤镜指南",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_HISTOGRAM",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用直方图",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_PREVIEW_LUT",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用预览LUT",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_PRO_AE_PRIORITY_MODE",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用专业AE优先模式",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_PRO_WHITE_BALANCE_TINT",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用专业白平衡色调",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_PRO_RAW_ONLY_PICTURE_FORMAT",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用专业RAW仅图片格式",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_PRO_VIDEO_TELE_LENS_60FPS",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用专业视频长焦镜头60FPS",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_PRO_VIDEO_TELE_LENS_120FPS",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用专业视频长焦镜头120FPS",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_PRO_VIDEO_WIDE_LENS_60FPS",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用专业视频广角镜头60FPS",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_PRO_VIDEO_WIDE_LENS_120FPS",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用专业视频广角镜头120FPS",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_PRO_VIDEO_SECOND_TELE_LENS_60FPS",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用专业视频第二长焦镜头60FPS",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_PRO_VIDEO_SECOND_TELE_LENS_120FPS",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用专业视频第二长焦镜头120FPS",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_CAMERA_ASSISTANT",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用相机助手",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_CAMERA_ASSISTANT_ADAPTIVE_PIXEL",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用相机助手自适应像素",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_CAMERA_ASSISTANT_ADDITIONAL_MODE_NIGHT",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用相机助手附加模式夜景",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_CAMERA_ASSISTANT_ANAMORPHIC_LENS",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用相机助手变形镜头",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_CAMERA_ASSISTANT_ANAMORPHIC_LENS_HW_SCALER",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用相机助手变形镜头硬件缩放",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_CAMERA_ASSISTANT_AUTO_EXPOSURE_LIMIT",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用相机助手自动曝光限制",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_CAMERA_ASSISTANT_AUTO_LENS_SWITCHING",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用相机助手自动镜头切换",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_CAMERA_ASSISTANT_AUTO_ZOOM_STYLE",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用相机助手自动变焦风格",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_CAMERA_ASSISTANT_CUSTOMIZE_INDICATORS",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用相机助手自定义指示器",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_CAMERA_ASSISTANT_DIGITAL_ZOOM_UPSCALE",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用相机助手数字变焦升级",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_CAMERA_ASSISTANT_DOF_ADAPTER",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用相机助手景深适配",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_CAMERA_ASSISTANT_FOCUS_PEAKING",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用相机助手峰值对焦",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_CAMERA_ASSISTANT_FOCUS_SPEED_SETTINGS",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用相机助手对焦速度设置",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_CAMERA_ASSISTANT_NIGHT_VIDEO",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用相机助手夜景视频",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_CAMERA_ASSISTANT_OPTICAL_IMAGE_STABILIZATION",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用相机助手光学防抖",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_CAMERA_ASSISTANT_PRO_MODE_PRESETS",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用相机助手专业模式预设",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_CAMERA_ASSISTANT_RECORDING_8K_WHEN_MIRRORING",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用相机助手投屏时8K录制",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_CAMERA_ASSISTANT_STEREO_CAPTURE",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用相机助手立体拍摄",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_CAMERA_ASSISTANT_TILTA_WIRELESS_LENS_CONTROLLER",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用相机助手Tilta无线镜头控制器",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_CAMERA_ASSISTANT_TOUCH_AF_AE_IN_PRO_VIDEO_MODE",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用相机助手专业视频模式触摸AF/AE",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_CAMERA_ASSISTANT_VIDEO_SOFTENING",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用相机助手视频柔化",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_CAMERA_ASSISTANT_WIDE_FLASH_MENU",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用相机助手广角闪光灯菜单",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_CAMERA_ASSISTANT_ZOOM_X100",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用相机助手100倍变焦",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_CAMERA_ASSISTANT_CROP_ZOOM_X2",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用相机助手2倍裁剪变焦",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_CAMERA_ASSISTANT_CROP_ZOOM_X10",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用相机助手10倍裁剪变焦",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_STEREO_CAPTURE",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用立体声拍摄",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_STEREO_CAPTURE_UHD_30",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用立体声拍摄UHD 30fps",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_50MP_MOTION_PHOTO",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用50MP动态照片",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_50MP_PHOTO_FILTER",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用50MP照片滤镜",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_24MP_MOTION_PHOTO",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用24MP动态照片",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_FUSION_HIGH_RESOLUTION",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用融合高分辨率",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_BACK_PRO_HIGH_RESOLUTION",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用后置专业高分辨率",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_BACK_MEDIUM_RESOLUTION",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用后置中分辨率",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_BACK_PORTRAIT_MEDIUM_RESOLUTION",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用后置人像中分辨率",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_BACK_PORTRAIT_NORMAL_DUAL",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用后置人像普通双摄",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_BACK_PORTRAIT_TELE_DUAL",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用后置人像长焦双摄",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_BACK_PORTRAIT_SECOND_TELE_DUAL",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用后置人像第二长焦双摄",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_BACK_PORTRAIT_VIDEO_NORMAL_DUAL",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用后置人像视频普通双摄",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_BACK_PORTRAIT_VIDEO_TELE_DUAL",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用后置人像视频长焦双摄",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_BACK_PORTRAIT_VIDEO_OIS",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用后置人像视频OIS",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_BACK_PORTRAIT_VIDEO_SEAMLESS_ZOOM",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用后置人像视频无缝变焦",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_BACK_TELE_PRO",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用后置长焦专业模式",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_BACK_SECOND_TELE_PRO",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用后置第二长焦专业模式",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_BACK_WIDE_PRO",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用后置超广角专业模式",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_WIDE_LENS_CORRECTION",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用广角镜头校正",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_FLASH_IN_WIDE_LENS",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用广角镜头闪光灯",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_LENS_DIRTY_DETECTION",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用镜头污点检测",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_LIVE_BLUR",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用实时模糊",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_EXPAND_SHUTTER_SPEED",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用扩展快门速度",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_HIGH_RESOLUTION_SHUTTER_VI",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用高分辨率快门VI",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_QUICK_SHUTTER",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用快速快门",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_QUICK_TAKE",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用快速拍摄",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_QUICK_VIEW_SCALE_VI",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用快速查看缩放VI",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_CAMERA_FLASH",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用相机闪光灯",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_CAMERA_PREWARMING",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用相机预热",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_HOME_KEY_QUICK_LAUNCH",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用Home键快速启动相机",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_POWER_KEY_QUICK_LAUNCH",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用电源键快速启动相机",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_FUNCTION_KEY_MENU_AT_GLOBAL_SETTINGS",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用全局设置功能键菜单",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_AUTO_HDR_MENU",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "显示自动HDR菜单",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_SHUTTER_SOUND_MENU",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用快门音菜单",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_ACTIVE_KEY",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用活动键",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_APV",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用APV",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_AMOLED_DISPLAY",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用AMOLED显示",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_PREVIEW_FIT_TO_FULL_SCREEN",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用预览适配全屏",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_ZOOM_MAP_VIEW",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用变焦地图视图",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_DISPLAY_FRAME_RATE_60HZ",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用60Hz显示帧率",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_BLUETOOTH_LE_STREAMING_STATE_INTENT",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用BLE流媒体状态意图",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_RECOVERY_MODE",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用恢复模式",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_REPLACE_SEC_BRAND_AS_GALAXY",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "替换三星品牌为Galaxy",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_SHOW_PAUSED_PREVIEW_TO_RESUME_CAMERA",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "显示暂停预览以恢复相机",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_SWITCH_FACING_WHILE_RECORDING",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用录制期间切换镜头",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_SAVE_AS_FLIPPED_IN_MEDIA_RECORDER",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用媒体录制器翻转保存",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_SAVE_AS_FLIPPED",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用翻转保存",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_SELFIE_TONE_MODE",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用自拍色调模式",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_SELFIE_TONE_V2_MODE",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用自拍色调V2模式",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_SELFIE_TONE_V3_MODE",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用自拍色调V3模式",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_SMART_BEAUTY",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用智能美颜",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_SCENE_DETECTION_LITE",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用轻量场景检测",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_SCENE_OPTIMIZER",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用场景优化器",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_SHUTTER_RELEASE_PRIORITY_POLICY_FOR_CAPTURE",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用拍摄快门释放优先策略",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_SINGLE_TAKE_CONTINUOUS_AF",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用单次拍摄连续AF",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_SINGLE_TAKE_VIDEO_PREVIOUS_RECORDING",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用单次拍摄视频预录制",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_VDIS_IN_SINGLE_TAKE",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用单次拍摄VDIS",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_THERMISTOR_TEMPERATURE",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用热敏电阻温度检测",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_RECORDING_HIGH_TEMPERATURE_WARNING",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用录制高温警告",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_ESIM",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用eSIM支持",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_MULTI_SCAN",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用多重扫描",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_LOW_PERFORMANCE_BURST_PANORAMA",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用低性能连拍全景",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_LOW_PERFORMANCE_CONTINUOUS_SHOT",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用低性能连续拍摄",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_LOW_PERFORMANCE_MULTI_SCAN",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用低性能多重扫描",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_DOCUMENT_SCAN_OBJECT_REMOVAL",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用文档扫描对象移除",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_SEC_MEDIA_PROVIDER_OTG",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用三星媒体提供商OTG",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_SECURITY_MDM_SERVICE",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用安全MDM服务",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_3D_SURFACE_TRANSITION_FLAG",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用3D表面过渡标志",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_3_5_PI_HEADSET",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用3.5mm耳机",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_30FPS_FOR_ALL_EFFECTS_PORTRAIT_VIDEO",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用所有人像视频效果30fps",
+    "enabled": false
+  },
+  {
+    "key": "DEFAULT_DIGITAL_ZOOM_UPSCALE",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "默认启用数字变焦升级",
+    "enabled": false
+  },
+  {
+    "key": "DEFAULT_MOTION_PHOTO",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "默认启用动态照片",
+    "enabled": false
+  },
+  {
+    "key": "DEFAULT_MOTION_PHOTO_SHUTTER_SOUND_TIMING",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "默认启用动态照片快门音时机",
+    "enabled": false
+  },
+  {
+    "key": "DEFAULT_MOTION_PHOTO_SHUTTER_SOUND_TYPE",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "默认启用动态照片快门音类型",
+    "enabled": false
+  },
+  {
+    "key": "DEFAULT_SAVE_AS_FLIPPED",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "默认启用翻转保存",
+    "enabled": false
+  },
+  {
+    "key": "DEFAULT_SCENE_OPTIMIZER",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "默认启用场景优化器",
+    "enabled": false
+  },
+  {
+    "key": "DEFAULT_ZOOM_IN_MIC",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "默认启用变焦麦克风",
+    "enabled": false
+  },
+  {
+    "key": "DEFAULT_BEAUTY_LEVEL",
+    "value": "5",
+    "command": "MODIFY",
+    "desc": "默认美颜等级",
+    "enabled": false
+  },
+  {
+    "key": "DEFAULT_SMART_BEAUTY_LEVEL",
+    "value": "3",
+    "command": "MODIFY",
+    "desc": "默认智能美颜等级",
+    "enabled": false
+  },
+  {
+    "key": "IS_COUNTRY_CHINA",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "设置国家为中国",
+    "enabled": false
+  },
+  {
+    "key": "IS_UNPACK_BINARY",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用解包二进制",
+    "enabled": false
+  }
+]
