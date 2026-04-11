@@ -240,18 +240,27 @@ void patch_xml(const char* xml_p, const char* cfg_p, const char* dst) {
     char *p = s;
 
     if (is_camera_format) {
-        // 解析 camera-feature.xml 格式: <local name="KEY" value="VALUE" .../>
+        // 解析 camera-feature.xml 格式: <local name="KEY" value="VALUE" 其他属性.../>
+        // 策略: 保留整行原文，只修改匹配的 key 的 value 属性
         while (p < e && n < MAX_FEATURES) {
-            p = strstr(p, "<local");
-            if (!p || p >= e) break;
+            char *local_start = strstr(p, "<local");
+            if (!local_start || local_start >= e) break;
+
+            // 找到标签结束
+            char *local_end = strstr(local_start, "/>");
+            if (!local_end) {
+                local_end = strstr(local_start, ">");
+            }
+            if (!local_end) { p = local_start + 6; continue; }
+            local_end += 2; // 跳过 "/>"
 
             // 查找 name 属性
-            char *name_start = strstr(p, "name=\"");
-            if (!name_start || name_start >= e) { p++; continue; }
+            char *name_start = strstr(local_start, "name=\"");
+            if (!name_start || name_start >= local_end) { p = local_start + 6; continue; }
             name_start += 6;
 
             char *name_end = strchr(name_start, '"');
-            if (!name_end || name_end >= e) { p++; continue; }
+            if (!name_end || name_end > local_end) { p = local_start + 6; continue; }
 
             int name_len = name_end - name_start;
             char *key = malloc(name_len + 1);
@@ -260,28 +269,28 @@ void patch_xml(const char* xml_p, const char* cfg_p, const char* dst) {
 
             // 查找 value 属性
             char *value_start = strstr(name_end, "value=\"");
-            if (!value_start || value_start >= e) {
-                // 如果没有 value 属性，跳过这个标签
-                p = name_end;
-                free(key);
-                continue;
+            char *value = NULL;
+            if (value_start && value_start < local_end) {
+                value_start += 7;
+                char *value_end = strchr(value_start, '"');
+                if (value_end && value_end <= local_end) {
+                    int value_len = value_end - value_start;
+                    value = malloc(value_len + 1);
+                    strncpy(value, value_start, value_len);
+                    value[value_len] = '\0';
+                }
             }
-            value_start += 7;
 
-            char *value_end = strchr(value_start, '"');
-            if (!value_end || value_end >= e) { p++; continue; }
+            if (value) {
+                list[n].key = key;
+                list[n].value = value;
+                n++;
+                DEBUG_LOG("Parsed: [%s] -> [%s]", key, value);
+            } else {
+                free(key);
+            }
 
-            int value_len = value_end - value_start;
-            char *value = malloc(value_len + 1);
-            strncpy(value, value_start, value_len);
-            value[value_len] = '\0';
-
-            list[n].key = key;
-            list[n].value = value;
-            n++;
-
-            DEBUG_LOG("Parsed: [%s] -> [%s]", key, value);
-            p = value_end + 1;
+            p = local_end;
         }
     } else {
         // 传统格式解析：<Key>value</Key>
@@ -351,21 +360,98 @@ void patch_xml(const char* xml_p, const char* cfg_p, const char* dst) {
         }
     }
 
-    qsort(list, n, sizeof(Feature), cmp_feat);
-
     FILE *f = fopen(dst, "wb");
     if (f) {
         if (is_camera_format) {
-            // 写入 camera-feature.xml 格式
-            fprintf(f, "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<features>\n");
+            // camera-feature.xml 特殊处理：逐行复制，只修改 value 属性
+            char *line = xc;
+            char *file_end = xc + xs;
+            
+            while (line < file_end) {
+                char *newline = strchr(line, '\n');
+                int line_len = newline ? (newline - line + 1) : (file_end - line);
+                
+                // 检查是否包含 <local 和 name="
+                char *local_tag = strstr(line, "<local");
+                char *name_attr = local_tag ? strstr(local_tag, "name=\"") : NULL;
+                
+                if (local_tag && name_attr && local_tag >= line && local_tag < line + line_len) {
+                    // 提取 name 值
+                    char *name_start = name_attr + 6;
+                    char *name_end = strchr(name_start, '"');
+                    
+                    if (name_end) {
+                        int name_len = name_end - name_start;
+                        char key[256];
+                        strncpy(key, name_start, name_len);
+                        key[name_len] = '\0';
+                        
+                        // 检查是否需要修改
+                        int need_modify = -1;
+                        for (int i = 0; i < n; i++) {
+                            if (strcmp(list[i].key, key) == 0) {
+                                need_modify = i;
+                                break;
+                            }
+                        }
+                        
+                        if (need_modify >= 0 && strcmp(list[need_modify].key, "ZZZ_DEL") != 0) {
+                            // 需要修改：替换 value="xxx" 部分
+                            char *value_attr = strstr(name_end, "value=\"");
+                            if (value_attr && value_attr < line + line_len) {
+                                char *value_end = strchr(value_attr + 7, '"');
+                                if (value_end) {
+                                    // 写 value 之前的部分
+                                    fwrite(line, 1, (value_attr + 7) - line, f);
+                                    // 写新值
+                                    fputs(list[need_modify].value, f);
+                                    // 写 value 之后的部分
+                                    fwrite(value_end, 1, line_len - (value_end - line), f);
+                                    line += line_len;
+                                    continue;
+                                }
+                            }
+                        } else if (need_modify >= 0 && strcmp(list[need_modify].key, "ZZZ_DEL") == 0) {
+                            // 需要删除：跳过此行
+                            line += line_len;
+                            continue;
+                        }
+                    }
+                }
+                
+                // 正常行，直接复制
+                fwrite(line, 1, line_len, f);
+                line += line_len;
+            }
+            
+            // 追加新增的项
+            int added = 0;
             for (int i = 0; i < n; i++) {
-                if (strcmp(list[i].key, "ZZZ_DEL") != 0) {
+                // 检查是否是新增的（原始文件中不存在的key）
+                int found_in_original = 0;
+                char *orig = xc;
+                while ((orig = strstr(orig, list[i].key)) != NULL && orig < e) {
+                    if (strstr(orig - 10, "name=\"") || strstr(orig, "name=\"")) {
+                        found_in_original = 1;
+                        break;
+                    }
+                    orig++;
+                }
+                
+                if (!found_in_original && strcmp(list[i].key, "ZZZ_DEL") != 0) {
+                    if (added == 0) {
+                        fprintf(f, "\n    <!-- Added by CSC Features Module -->\n");
+                    }
                     fprintf(f, "    <local name=\"%s\" value=\"%s\"/>\n", list[i].key, list[i].value);
+                    added++;
                 }
             }
-            fprintf(f, "</features>\n");
+            
+            if (added > 0) {
+                DEBUG_LOG("Added %d new features to camera-feature.xml", added);
+            }
         } else {
-            // 写入传统格式
+            // 传统格式：重新生成 FeatureSet 块
             fwrite(xc, 1, s - xc, f); fprintf(f, "\n");
             for (int i = 0; i < n; i++) {
                 if (strcmp(list[i].key, "ZZZ_DEL") != 0) {
