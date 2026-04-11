@@ -7,7 +7,6 @@ CONFIG_PATH="/data/adb/csc_config"
 ARCH=$(getprop ro.product.cpu.abi)
 CSC=$(getprop ro.boot.sales_code)
 TOOL="$MODDIR/libs/$ARCH/csc_tool"
-HASH_DIR="$MODDIR/hashes"
 
 # ===== Debug 开关 =====
 DEBUG=0   # 0=关闭  1=开启
@@ -26,7 +25,6 @@ debug() {
 
 prepare_log() {
     : > "$LOG_FILE"
-    mkdir -p "$HASH_DIR"
     log "=== 模块启动: CSC=$CSC, ARCH=$ARCH, DEBUG=$DEBUG ==="
 }
 
@@ -47,41 +45,41 @@ find_file() {
     return 1
 }
 
-# 计算文件联合 Hash
-# 参数: 传入需要纳入校验的多个文件路径
-calc_hash() {
-    # 将存在的文件内容合并后计算 md5
-    cat "$@" 2>/dev/null | md5sum | awk '{print $1}'
-}
-
-# 部署文件以供 Magisk/KSU OverlayFS/Magic Mount 挂载
-deploy_for_mount() {
+# 使用 mount --bind 显式挂载文件
+# 参数: $1=源文件路径(模块内处理后的文件) $2=目标文件路径(系统原始文件)
+mount_bind_file() {
     local src_file=$1
-    local origin_path=$2
-    
-    # 路径标准化: 如果是 /etc 开头，转为 /system/etc，确保 Magisk/KSU 正确识别挂载点
-    local target_path="$origin_path"
-    case "$target_path" in
-        /etc/*) target_path="/system$target_path" ;;
+    local target_path=$2
+
+    # 路径标准化: 如果是 /etc 开头，转为 /system/etc
+    local normalized_target="$target_path"
+    case "$normalized_target" in
+        /etc/*) normalized_target="/system$target_path" ;;
     esac
 
-    local module_target_path="$MODDIR$target_path"
-    
-    debug "准备部署挂载点: $module_target_path"
-    
-    # 创建对应的目录树
-    mkdir -p "$(dirname "$module_target_path")"
-    
-    # 复制文件到模块对应目录，KSU/Magisk 会在稍后自动 OverlayFS 挂载它
-    cp -f "$src_file" "$module_target_path"
-    
-    # 同步 SELinux 上下文
-    if [ -f "$origin_path" ]; then
-        local ctx=$(ls -Z "$origin_path" 2>/dev/null | awk '{print $1}')
-        [ -n "$ctx" ] && chcon "$ctx" "$module_target_path" 2>/dev/null
+    # 确保目标文件存在
+    if [ ! -f "$normalized_target" ]; then
+        log "错误: 目标文件不存在 $normalized_target"
+        return 1
     fi
 
-    log "成功部署: $target_path"
+    # 先卸载可能存在的旧挂载
+    if mount | grep -q "$normalized_target"; then
+        debug "检测到旧挂载，正在卸载: $normalized_target"
+        umount -l "$normalized_target" 2>/dev/null
+    fi
+
+    # 执行 mount --bind
+    mount --bind "$src_file" "$normalized_target" >> "$LOG_FILE" 2>&1
+
+    # 检查挂载是否成功
+    if mount | grep -q "$normalized_target"; then
+        log "✓ 成功挂载: $normalized_target"
+        return 0
+    else
+        log "✗ 挂载失败: $normalized_target"
+        return 1
+    fi
 }
 
 # 通用特性文件处理函数
@@ -119,24 +117,14 @@ process_feature_file() {
     local final_file="$MODDIR/final_$label"
     local user_config="$CONFIG_PATH/$config_name"
 
-    # 3. Hash 校验 (支持增量更新)
-    local hash_file="$HASH_DIR/$label.md5"
-    local current_hash=$(calc_hash "$origin_path" "$user_config" "$TOOL")
-    local old_hash=""
-    [ -f "$hash_file" ] && old_hash=$(cat "$hash_file")
-
-    # 检查已部署文件路径
-    local check_path="$origin_path"
-    case "$check_path" in
-        /etc/*) check_path="/system$check_path" ;;
-    esac
-
-    if [ "$current_hash" = "$old_hash" ] && [ -f "$MODDIR$check_path" ]; then
-        log "增量校验通过: $label 无变动，跳过。"
+    # 3. 检查已处理文件是否存在（重启后直接使用缓存的处理后文件）
+    if [ -f "$final_file" ]; then
+        log "$label 已存在缓存，直接使用..."
+        mount_bind_file "$final_file" "$origin_path"
         return
     fi
 
-    log "检测到 $label 变动，开始处理..."
+    log "开始处理 $label..."
 
     # 4. 解码/复制 (根据文件类型)
     if [ "$is_plain" = "1" ]; then
@@ -172,11 +160,10 @@ process_feature_file() {
         fi
     fi
 
-    # 7. 部署挂载
+    # 7. 使用 mount --bind 显式挂载
     if [ -f "$final_file" ]; then
-        deploy_for_mount "$final_file" "$origin_path"
-        echo "$current_hash" > "$hash_file"
-        log "✓ $label 处理完成"
+        mount_bind_file "$final_file" "$origin_path"
+        log "✓ $label 处理完成并已挂载"
     else
         log "✗ 错误: patch 失败 ($label)"
     fi
@@ -203,4 +190,4 @@ process_feature_file "carrier"  "customer_carrier_feature.json" "carrier.json"  
 process_feature_file "ff"       "floating_feature.xml"          "ff.json"               1
 process_feature_file "camera"   "camera-feature.xml"            "camera-feature.json"   1 "/system/cameradata/camera-feature.xml"
 
-log "=== 脚本执行完毕，等待系统 OverlayFS 挂载 ==="
+log "=== 脚本执行完毕，mount --bind 挂载完成 ==="
