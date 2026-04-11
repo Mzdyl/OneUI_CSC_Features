@@ -188,6 +188,5 @@ chmod +x "$TOOL"
 process_feature_file "csc"      "cscfeature.xml"                "csc.json"              0
 process_feature_file "carrier"  "customer_carrier_feature.json" "carrier.json"          0
 process_feature_file "ff"       "floating_feature.xml"          "ff.json"               1
-process_feature_file "camera"   "camera-feature.xml"            "camera-feature.json"   1 "/system/cameradata/camera-feature.xml"
 
 log "=== 脚本执行完毕，mount --bind 挂载完成 ==="
