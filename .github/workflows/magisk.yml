@@ -53,12 +53,57 @@ jobs:
           sed -i "s/\"versionCode\": [0-9]*/\"versionCode\": $NEW_VCODE/" $JSON_FILE
           echo "NEW_VCODE=$NEW_VCODE" >> $GITHUB_ENV
 
+      - name: Generate CHANGELOG
+        if: steps.get_version.outputs.has_version == 'true'
+        id: changelog
+        run: |
+          # 获取上一个标签
+          PREV_TAG=$(git describe --tags --abbrev=0 HEAD^ 2>/dev/null || echo "")
+          
+          # 生成 changelog 内容
+          if [ -z "$PREV_TAG" ]; then
+            CHANGELOG=$(git log --pretty=format:"- %s (%h)" ${{ github.ref_name }})
+          else
+            CHANGELOG=$(git log --pretty=format:"- %s (%h)" $PREV_TAG..HEAD)
+          fi
+          
+          # 保存到环境变量
+          echo "CHANGELOG_CONTENT<<EOF" >> $GITHUB_ENV
+          echo "## 更新内容" >> $GITHUB_ENV
+          echo "" >> $GITHUB_ENV
+          echo "$CHANGELOG" >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
+          
+          # 更新 CHANGELOG.md 文件
+          if [ -f CHANGELOG.md ]; then
+            # 在文件开头插入新的 changelog
+            TEMP_FILE=$(mktemp)
+            echo "# Changelog" > $TEMP_FILE
+            echo "" >> $TEMP_FILE
+            echo "## ${{ steps.get_version.outputs.version }} ($(date '+%Y-%m-%d'))" >> $TEMP_FILE
+            echo "" >> $TEMP_FILE
+            echo "$CHANGELOG" >> $TEMP_FILE
+            echo "" >> $TEMP_FILE
+            # 移除旧文件的标题行
+            tail -n +3 CHANGELOG.md >> $TEMP_FILE
+            mv $TEMP_FILE CHANGELOG.md
+          else
+            # 创建新的 CHANGELOG.md
+            echo "# Changelog" > CHANGELOG.md
+            echo "" >> CHANGELOG.md
+            echo "## ${{ steps.get_version.outputs.version }} ($(date '+%Y-%m-%d'))" >> CHANGELOG.md
+            echo "" >> CHANGELOG.md
+            echo "$CHANGELOG" >> CHANGELOG.md
+          fi
+          
+          echo "changelog_generated=true" >> $GITHUB_OUTPUT
+
       - name: Commit Version Update
         if: steps.get_version.outputs.has_version == 'true'
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add module_files/module.prop update.json
+          git add module_files/module.prop update.json CHANGELOG.md
           git commit -m "Auto update version to ${{ steps.get_version.outputs.version }} [skip ci]"
           git push origin ${{ github.ref_name }}
 
@@ -92,6 +137,8 @@ jobs:
             ## OneUI CSC Features ${{ steps.get_version.outputs.version }}
             - 自动构建版本: ${{ env.NEW_VCODE }}
             - 提交信息: ${{ github.event.head_commit.message }}
+            
+            ${{ env.CHANGELOG_CONTENT }}
           files: auto_modify_cscfeature.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
