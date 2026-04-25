@@ -180,5 +180,89 @@
     "command": "MODIFY",
     "desc": "修改 Dex 模式支持范围",
     "enabled": false
+  },
+  {
+    "key": "SEC_FLOATING_FEATURE_AUDIO_SUPPORT_BT_RECORDING",
+    "value": "TRUE",
+    "command": "MODIFY",
+    "desc": "修改 蓝牙录音支持",
+    "enabled": false
+  },
+  {
+    "key": "SEC_FLOATING_FEATURE_AUDIO_SUPPORT_RECORDING_POPUP",
+    "value": "TRUE",
+    "command": "MODIFY",
+    "desc": "修改 录音弹窗支持",
+    "enabled": false
+  },
+  {
+    "key": "SEC_FLOATING_FEATURE_AUDIO_SUPPORT_VOICE_CHANGER",
+    "value": "TRUE",
+    "command": "MODIFY",
+    "desc": "修改 变声功能支持",
+    "enabled": false
+  },
+  {
+    "key": "SEC_FLOATING_FEATURE_BATTERY_SUPPORT_WIRELESS_TX",
+    "value": "TRUE",
+    "command": "MODIFY",
+    "desc": "修改 无线反向充电支持",
+    "enabled": false
+  },
+  {
+    "key": "SEC_FLOATING_FEATURE_BIXBY_SUPPORT_LONG_KEY_SERVICE",
+    "value": "TRUE",
+    "command": "MODIFY",
+    "desc": "修改 长按按键唤起 Bixby 服务支持",
+    "enabled": false
+  },
+  {
+    "key": "SEC_FLOATING_FEATURE_CAMERA_SUPPORT_DOWNLOAD_EFFECT",
+    "value": "TRUE",
+    "command": "MODIFY",
+    "desc": "修改 相机下载效果功能支持",
+    "enabled": false
+  },
+  {
+    "key": "SEC_FLOATING_FEATURE_CAMERA_SUPPORT_DUAL_PORTRAITVIDEO",
+    "value": "TRUE",
+    "command": "MODIFY",
+    "desc": "修改 双人像视频支持",
+    "enabled": false
+  },
+  {
+    "key": "SEC_FLOATING_FEATURE_CAMERA_SUPPORT_PRO_RGB_CONVERSION",
+    "value": "TRUE",
+    "command": "MODIFY",
+    "desc": "修改 专业模式 RGB 转换支持",
+    "enabled": false
+  },
+  {
+    "key": "SEC_FLOATING_FEATURE_CAMERA_SUPPORT_QRCODE",
+    "value": "TRUE",
+    "command": "MODIFY",
+    "desc": "修改 相机二维码识别支持",
+    "enabled": false
+  },
+  {
+    "key": "SEC_FLOATING_FEATURE_SYSTEMUI_SUPPORT_BRIEF_NOTIFICATION",
+    "value": "TRUE",
+    "command": "MODIFY",
+    "desc": "修改 简短通知样式支持",
+    "enabled": false
+  },
+  {
+    "key": "SEC_FLOATING_FEATURE_SYSTEM_SUPPORT_SCREEN_CURTAIN",
+    "value": "TRUE",
+    "command": "MODIFY",
+    "desc": "修改 屏幕幕帘功能支持",
+    "enabled": false
+  },
+  {
+    "key": "SEC_FLOATING_FEATURE_VISION_SUPPORT_AI_MY_FAVORITE_CONTENTS",
+    "value": "TRUE",
+    "command": "MODIFY",
+    "desc": "修改 AI 我的常用内容支持",
+    "enabled": false
   }
 ]

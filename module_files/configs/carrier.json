@@ -68,5 +68,47 @@
     "command": "MODIFY",
     "desc": "图标风格",
     "enabled": false
+  },
+  {
+    "key": "CarrierFeature_RIL_SupportVolte",
+    "value": "TRUE",
+    "command": "MODIFY",
+    "desc": "修改 启用 VoLTE 支持",
+    "enabled": false
+  },
+  {
+    "key": "CarrierFeature_VoiceCall_ConfigOpStyleForImsFunction",
+    "value": "crbt_video_cmcc,unidirectional_video_ctc",
+    "command": "MODIFY",
+    "desc": "修改 IMS 通话功能样式",
+    "enabled": false
+  },
+  {
+    "key": "CarrierFeature_VoiceCall_ConfigOpStyleForRoaming",
+    "value": "PNL",
+    "command": "MODIFY",
+    "desc": "修改 漫游通话功能样式",
+    "enabled": false
+  },
+  {
+    "key": "CarrierFeature_VoiceCall_ConfigOpStyleForVolte",
+    "value": "VolteCtc,CTC_VOLTE,wait_for_volte_regi_in_airplane_mode_ctc",
+    "command": "MODIFY",
+    "desc": "修改 VoLTE 功能样式",
+    "enabled": false
+  },
+  {
+    "key": "CarrierFeature_VoiceCall_DisableCallTransfer",
+    "value": "TRUE",
+    "command": "MODIFY",
+    "desc": "修改 禁用呼叫转移",
+    "enabled": false
+  },
+  {
+    "key": "CarrierFeature_VoiceCall_DisableGeoDescription",
+    "value": "TRUE",
+    "command": "MODIFY",
+    "desc": "修改 禁用号码地理描述",
+    "enabled": false
   }
 ]

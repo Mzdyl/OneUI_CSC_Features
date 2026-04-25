@@ -274,6 +274,9 @@
   },
   {
     "key": "SUPPORT_BACK_MULTI_HIGH_RESOLUTION",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用后置多重高分辨率支持",
     "enabled": false
   },
   {
@@ -1709,6 +1712,230 @@
     "value": "true",
     "command": "MODIFY",
     "desc": "启用解包二进制",
+    "enabled": false
+  },
+  {
+    "key": "CAMERA_QUICK_LAUNCH_USING_POWER_KEY",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用电源键快速启动相机",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_BACK_DUAL_PORTRAIT",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用后置双人像支持",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_BACK_WIDE_NORMAL_DUAL_PORTRAIT",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用后置广角与主摄双人像支持",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_BACK_TOF_PORTRAIT",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用后置 ToF 人像支持",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_TAP_AND_HOLD_CAMERA_BUTTON",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用长按相机按钮操作",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_LIVE_FOCUS_TORCH_FLASH",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用人像模式手电筒闪光支持",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_LIVE_FOCUS_HDR_CAPTURE",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用人像模式 HDR 拍摄支持",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_LIVE_FOCUS_LENS_TYPE_CHANGE",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用人像模式镜头切换支持",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_BOKEH_FOCUSED_REGION",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用焦点区域虚化支持",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_VIDEO_BOKEH_EFFECT",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用视频虚化效果支持",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_LIVE_FOCUS_VIDEO_BEAUTY",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用人像视频美颜支持",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_CONTROL_VIDEO_BOKEH_EFFECT_IN_RECORDING",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用录制中调节视频虚化效果",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_LIVE_FOCUS_BACK_CAMERA_ANGLE_CHANGE_BY_ZOOM",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用后置人像模式随变焦切换视角",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_BACK_WIDE_NORMAL_DUAL_PORTRAIT_VIDEO",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用后置广角与主摄双人像视频支持",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_LIVE_BEAUTY_IN_AUTO_MODE",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用自动模式实时美颜支持",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_BEAUTY_BRIGHTEN",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用美颜提亮支持",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_FILTER_COMBINE",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用滤镜组合支持",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_ZOOM_SHORTCUT_WITH_LENS_BUTTON",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用镜头按钮变焦快捷方式",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_VIDEO_AUTO_FPS",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用视频自动帧率支持",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_LIVE_FOCUS_SCENE_DETECTION_MODE",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用人像模式场景检测支持",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_DOCUMENT_SCAN_NEW_CONCEPT",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用新版文档扫描支持",
+    "enabled": false
+  },
+  {
+    "key": "SHOW_PAUSED_PREVIEW_TO_RESUME_CAMERA",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用显示暂停预览以恢复相机",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_CLOSE_UP_SUGGESTION",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用近距离拍摄建议",
+    "enabled": false
+  },
+  {
+    "key": "KEEP_CHANGED_EV_AFTER_ZOOM",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用变焦后保留曝光补偿",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_SINGLE_TAKE_FILTERED_VIDEOS",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用单拍模式滤镜视频支持",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_POST_PICTURE_PROCESSING",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用后处理拍照支持",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_VIDEO_AUTO_FPS_OPTION",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用视频自动帧率选项",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_SUPER_STEADY_CROP_ZOOM_X2",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用超级防抖裁切 2x 变焦支持",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_FOOD_CROP_ZOOM_X2",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用美食模式裁切 2x 变焦支持",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_HYPER_LAPSE_CROP_ZOOM_X2",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用延时摄影裁切 2x 变焦支持",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_NIGHT_CROP_ZOOM_X2",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用夜景模式裁切 2x 变焦支持",
+    "enabled": false
+  },
+  {
+    "key": "SUPPORT_CAMERA_ASSISTANT_AUDIO_MONITORING",
+    "value": "true",
+    "command": "MODIFY",
+    "desc": "启用相机助手音频监听支持",
     "enabled": false
   }
 ]

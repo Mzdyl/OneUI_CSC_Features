@@ -299,5 +299,33 @@
     "command": "MODIFY",
     "desc": "修改 添加5G开关及面板布局",
     "enabled": false
+  },
+  {
+    "key": "CscFeature_Common_ConfigDynamicLockScreenPolicy",
+    "value": "MagazineLockScreen",
+    "command": "MODIFY",
+    "desc": "修改 动态锁屏策略为杂志锁屏",
+    "enabled": false
+  },
+  {
+    "key": "CscFeature_Common_SupportZProjectFunctionInGlobal",
+    "value": "TRUE",
+    "command": "MODIFY",
+    "desc": "修改 全局支持 Z Project 功能",
+    "enabled": false
+  },
+  {
+    "key": "CscFeature_VoiceCall_ConfigOpStyleForBixbyTextCall",
+    "value": "true,zh-CN,default_on,consent_com,cs_cn",
+    "command": "MODIFY",
+    "desc": "修改 三星文字通话功能样式",
+    "enabled": false
+  },
+  {
+    "key": "CscFeature_VoiceCall_ConfigOpStyleForLiveTranslate",
+    "value": "true,zh-CN,en-US,default_on",
+    "command": "MODIFY",
+    "desc": "修改 通话实时翻译功能样式",
+    "enabled": false
   }
 ]
