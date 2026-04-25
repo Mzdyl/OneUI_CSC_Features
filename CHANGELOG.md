@@ -1,5 +1,9 @@
 # Changelog
 
+## v2.2.3 (2026-04-25)
+
+- v2.2.3 Stabilize repeated bind mounts (5a028d7)
+
 ## v2.2.2 (2026-04-11)
 
 - v2.2.2 删除 camera 处理（待修复） (d5b2728)
