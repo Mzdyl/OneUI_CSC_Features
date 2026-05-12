@@ -4,17 +4,20 @@
 MODDIR=${0%/*}
 LOG_FILE="$MODDIR/log.txt"
 CONFIG_PATH="/data/adb/csc_config"
+DEBUG=0
+[ -f "$CONFIG_PATH/debug" ] && DEBUG=1
 ARCH=$(getprop ro.product.cpu.abi)
 CSC=$(getprop ro.boot.sales_code)
 TOOL="$MODDIR/libs/$ARCH/csc_tool"
 STATE_DIR="$MODDIR/.state"
 RUNTIME_DIR="$STATE_DIR/runtime"
 GENERATED_LIST="$STATE_DIR/generated_paths.list"
+MOUNT_LIST="$STATE_DIR/mounts.list"
 
 . "$MODDIR/rebind_mounts.sh"
 
 # ===== Debug 开关 =====
-DEBUG=0   # 0=关闭  1=开启
+# 0=关闭  1=开启；创建 /data/adb/csc_config/debug 可开启详细日志
 
 # --- 辅助函数 ---
 
@@ -31,6 +34,7 @@ cleanup_empty_dirs() {
     local dir=$1
 
     while [ -n "$dir" ] && [ "$dir" != "$MODDIR" ] && [ "$dir" != "/" ]; do
+        debug "尝试清理空目录: $dir"
         rmdir "$dir" 2>/dev/null || break
         dir=$(dirname "$dir")
     done
@@ -42,6 +46,7 @@ cleanup_previous_generated() {
             [ -n "$rel_path" ] || continue
             local abs_path="$MODDIR$rel_path"
             if [ -e "$abs_path" ]; then
+                debug "清理上次生成文件: $abs_path"
                 rm -f "$abs_path"
                 cleanup_empty_dirs "$(dirname "$abs_path")"
             fi
@@ -52,6 +57,7 @@ cleanup_previous_generated() {
 }
 
 cleanup_legacy_artifacts() {
+    debug "清理旧版临时产物和遗留挂载文件"
     rm -f "$MODDIR"/decoded_* "$MODDIR"/patched_* "$MODDIR"/final_* 2>/dev/null
     rm -rf "$MODDIR/system/optics" "$MODDIR/optics" "$MODDIR/system/cameradata" 2>/dev/null
     rm -f "$MODDIR/system/etc/floating_feature.xml" 2>/dev/null
@@ -60,7 +66,15 @@ cleanup_legacy_artifacts() {
 prepare_log() {
     mkdir -p "$STATE_DIR" "$RUNTIME_DIR"
     : > "$LOG_FILE"
+    : > "$MOUNT_LIST"
     log "=== 模块启动: CSC=$CSC, ARCH=$ARCH, DEBUG=$DEBUG ==="
+    debug "MODDIR=$MODDIR"
+    debug "CONFIG_PATH=$CONFIG_PATH"
+    debug "STATE_DIR=$STATE_DIR"
+    debug "RUNTIME_DIR=$RUNTIME_DIR"
+    debug "GENERATED_LIST=$GENERATED_LIST"
+    debug "MOUNT_LIST=$MOUNT_LIST"
+    debug "TOOL=$TOOL"
 }
 
 find_file() {
@@ -75,8 +89,10 @@ find_file() {
         return 1
     fi
 
+    debug "查找文件: filename=$filename carriers=$carriers CSC=$CSC"
     matches=$(find "$carriers" -type f -name "$filename" -path "*/$CSC/*" 2>/dev/null | sort)
     count=$(printf '%s\n' "$matches" | sed '/^$/d' | wc -l | tr -d ' ')
+    debug "查找结果数量: $filename count=$count"
 
     if [ "$count" = "0" ]; then
         debug "未找到文件: $filename"
@@ -99,8 +115,14 @@ normalize_mount_target() {
     local target_path=$1
 
     case "$target_path" in
-        /etc/*) echo "/system$target_path" ;;
-        *) echo "$target_path" ;;
+        /etc/*)
+            debug "规范化挂载目标: $target_path -> /system$target_path"
+            echo "/system$target_path"
+            ;;
+        *)
+            debug "规范化挂载目标: $target_path"
+            echo "$target_path"
+            ;;
     esac
 }
 
@@ -111,12 +133,14 @@ resolve_mount_targets() {
     normalize_mount_target "$origin_path"
 
     real_path=$(readlink -f "$origin_path" 2>/dev/null)
+    debug "解析真实路径: origin=$origin_path real=$real_path"
     if [ -n "$real_path" ] && [ "$real_path" != "$origin_path" ]; then
         normalize_mount_target "$real_path"
     fi
 }
 
 record_generated_path() {
+    debug "记录生成文件: $1"
     printf '%s\n' "$1" >> "$GENERATED_LIST"
 }
 
@@ -127,15 +151,22 @@ copy_selinux_context() {
 
     [ -e "$source_path" ] || return
     ctx=$(ls -Z "$source_path" 2>/dev/null | awk '{print $1}')
-    [ -n "$ctx" ] && chcon "$ctx" "$target_path" 2>/dev/null
+    if [ -n "$ctx" ]; then
+        debug "复制 SELinux 上下文: $target_path <- $ctx"
+        chcon "$ctx" "$target_path" 2>/dev/null || debug "SELinux 上下文设置失败: $target_path"
+    else
+        debug "未读取到 SELinux 上下文: $source_path"
+    fi
 }
 
 deploy_for_mount() {
-    local src_file=$1
-    local origin_path=$2
+    local label=$1
+    local src_file=$2
+    local origin_path=$3
     local mount_targets
 
     mount_targets=$(resolve_mount_targets "$origin_path" | awk '!seen[$0]++')
+    debug "挂载目标解析完成: label=$label origin=$origin_path targets=$(printf '%s' "$mount_targets" | tr '\n' ',')"
     if [ -z "$mount_targets" ]; then
         log "错误: 无法解析挂载目标 $origin_path"
         return 1
@@ -147,13 +178,16 @@ deploy_for_mount() {
         [ -n "$target_path" ] || continue
         module_target_path="$MODDIR$target_path"
 
+        debug "准备部署: label=$label src=$src_file module_target=$module_target_path target=$target_path"
         mkdir -p "$(dirname "$module_target_path")"
         cp -f "$src_file" "$module_target_path"
+        debug "部署后文件大小: $(wc -c "$module_target_path" 2>/dev/null | awk '{print $1}') bytes"
         copy_selinux_context "$target_path" "$module_target_path"
         record_generated_path "$target_path"
+        record_mount_pair "$label" "$module_target_path" "$target_path"
 
         log "部署挂载文件: $target_path <- $(basename "$src_file")"
-        bind_file_retry "$target_path" "$module_target_path" "$target_path" 5
+        bind_file_retry "$label" "$module_target_path" "$target_path" 5
     done
 }
 
@@ -171,6 +205,7 @@ process_feature_file() {
     local deploy_file=""
 
     log "正在处理 $label ($filename)..."
+    debug "处理参数: label=$label filename=$filename config=$user_config is_plain=$is_plain fixed_path=$fixed_path"
 
     if [ -n "$fixed_path" ]; then
         origin_path="$fixed_path"
@@ -186,8 +221,11 @@ process_feature_file() {
 
     if [ -z "$origin_path" ] || [ ! -f "$origin_path" ]; then
         log "跳过: 未找到原始文件 $filename"
+        debug "跳过详情: origin_path=$origin_path exists=$([ -e "$origin_path" ] && echo 1 || echo 0)"
         return
     fi
+
+    debug "原始文件信息: path=$origin_path size=$(wc -c "$origin_path" 2>/dev/null | awk '{print $1}')"
 
     if [ -f "$user_config" ]; then
         log "$label 配置文件: $user_config"
@@ -196,8 +234,10 @@ process_feature_file() {
     fi
 
     rm -f "$decoded_file" "$patched_file" "$final_file"
+    debug "临时文件: decoded=$decoded_file patched=$patched_file final=$final_file"
 
     if [ "$is_plain" = "1" ]; then
+        debug "明文文件直接复制到 decoded: $origin_path"
         cp -f "$origin_path" "$decoded_file"
     else
         debug "执行 decode: $origin_path"
@@ -206,12 +246,14 @@ process_feature_file() {
             log "错误: decode 失败 ($label)"
             return
         fi
+        debug "decode 成功: $decoded_file size=$(wc -c "$decoded_file" 2>/dev/null | awk '{print $1}')"
     fi
 
     if [ -f "$user_config" ]; then
-        debug "执行 patch: $config_name"
+        debug "执行 patch: $config_name size=$(wc -c "$user_config" 2>/dev/null | awk '{print $1}')"
         "$TOOL" --patch "$decoded_file" "$user_config" "$patched_file" >> "$LOG_FILE" 2>&1
     else
+        debug "无用户配置，复制 decoded 到 patched"
         cp -f "$decoded_file" "$patched_file"
     fi
 
@@ -219,6 +261,7 @@ process_feature_file() {
         log "错误: patch 失败 ($label)"
         return
     fi
+    debug "patch 输出: $patched_file size=$(wc -c "$patched_file" 2>/dev/null | awk '{print $1}')"
 
     if [ "$is_plain" = "1" ]; then
         deploy_file="$patched_file"
@@ -227,6 +270,7 @@ process_feature_file() {
         "$TOOL" --encode "$patched_file" "$final_file" >> "$LOG_FILE" 2>&1
         if [ -f "$final_file" ]; then
             deploy_file="$final_file"
+            debug "encode 成功: $final_file size=$(wc -c "$final_file" 2>/dev/null | awk '{print $1}')"
         else
             log "警告: encode 失败，改为部署明文结果 ($label)"
             deploy_file="$patched_file"
@@ -234,16 +278,12 @@ process_feature_file() {
     fi
 
     log "$label 输出文件: $(basename "$deploy_file")"
-    deploy_for_mount "$deploy_file" "$origin_path"
+    deploy_for_mount "$label" "$deploy_file" "$origin_path"
 }
 
 # --- 主流程 ---
 
 prepare_log
-
-debug "MODDIR=$MODDIR"
-debug "CONFIG_PATH=$CONFIG_PATH"
-debug "TOOL=$TOOL"
 
 if [ ! -f "$TOOL" ]; then
     log "致命错误: 未找到核心工具 $TOOL"
